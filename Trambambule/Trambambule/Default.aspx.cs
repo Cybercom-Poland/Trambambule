@@ -17,7 +17,7 @@ namespace Trambambule
                 gvPlayerResults.DataBind();
 
                 ddlPlayers.DataSource = DataAccess.GetPlayers()
-                    .Select(p => new { Id = p.Id, Name = DataAccess.GetPlayerName(p) })
+                    .Select(p => new { Id = p.Id, Name = PlayerHelper.GetPlayerName(p) })
                     .OrderBy(p => p.Name);
                 ddlPlayers.DataBind();
                 BindPlayerStats();

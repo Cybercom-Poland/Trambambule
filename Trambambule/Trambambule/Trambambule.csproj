@@ -84,6 +84,7 @@
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="PlayerHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendResult.aspx.cs">
       <DependentUpon>SendResult.aspx</DependentUpon>
