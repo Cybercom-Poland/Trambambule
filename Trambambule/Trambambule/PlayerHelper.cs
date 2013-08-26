@@ -44,10 +44,10 @@ namespace Trambambule
             {
                 playerB2LastMatchData = CreateEmptyMatchData();
             }
-            playerA1LastMatchData.RD = CalculateCurrentRD(playerA1LastMatchData);
-            playerA2LastMatchData.RD = CalculateCurrentRD(playerA2LastMatchData);
-            playerB1LastMatchData.RD = CalculateCurrentRD(playerB1LastMatchData);
-            playerB2LastMatchData.RD = CalculateCurrentRD(playerB2LastMatchData);
+            playerA1LastMatchData.RD = CalculateCurrentRD(playerA1LastMatchData, playerA1MatchData.Timestamp);
+            playerA2LastMatchData.RD = CalculateCurrentRD(playerA2LastMatchData, playerA2MatchData.Timestamp);
+            playerB1LastMatchData.RD = CalculateCurrentRD(playerB1LastMatchData, playerB1MatchData.Timestamp);
+            playerB2LastMatchData.RD = CalculateCurrentRD(playerB2LastMatchData, playerB2MatchData.Timestamp);
             FillSinglePlayerRating(ref playerA1MatchData, playerA1LastMatchData, playerA2LastMatchData, playerB1LastMatchData, playerB2LastMatchData, goalsA, goalsB);
             FillSinglePlayerRating(ref playerA2MatchData, playerA2LastMatchData, playerA1LastMatchData, playerB1LastMatchData, playerB2LastMatchData, goalsA, goalsB);
             FillSinglePlayerRating(ref playerB1MatchData, playerB1LastMatchData, playerB2LastMatchData, playerA1LastMatchData, playerA2LastMatchData, goalsB, goalsA);
@@ -87,10 +87,10 @@ namespace Trambambule
             }
         }
 
-        public static double CalculateCurrentRD(TeamMatchPlayer lastMatchData)
+        public static double CalculateCurrentRD(TeamMatchPlayer lastMatchData, DateTime currentTimestamp)
         {
             double currentRD = (double) lastMatchData.RD;
-            TimeSpan timeSpan = DateTime.Now - lastMatchData.Timestamp;
+            TimeSpan timeSpan = currentTimestamp - lastMatchData.Timestamp;
             double timeInSeconds = timeSpan.TotalSeconds;
             return Math.Min(MAX_RD, Math.Sqrt(currentRD * currentRD + MAGIC_C_CONSTANT * MAGIC_C_CONSTANT * timeInSeconds));
         }
