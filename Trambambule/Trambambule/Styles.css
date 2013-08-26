@@ -1,0 +1,81 @@
+﻿body 
+{
+    font-family: Tahoma;
+    font-size: 12px;
+    color: #606060;
+}
+
+input[type=text], textarea
+{
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    
+    border: 1px solid #ccc;
+    padding: 3px;
+}
+
+input[type=submit]
+{
+    background-color: #777777;
+    font-weight: bold;
+    color: White;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 5px;
+    padding: 5px 10px;   
+    border: 0px solid;
+    cursor: pointer;
+}
+input[type=submit]:hover
+{
+    background-color: #9E9E9E;
+}
+
+.SendResults
+{
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #EDEDED;
+    display: table;
+    *display: inline;
+    *zoom: 1;
+}
+
+.SendResults h1
+{
+    text-align: center;
+    margin: 5px;
+    font-size: 1.4em;
+}
+
+.SendResults h2
+{
+    margin: 5px;
+    font-size: 1.2em;
+}
+
+.SendResults h3
+{
+    margin: 5px;
+    font-size: 1.1em;
+}
+
+.SendResults table
+{
+    margin: 0 auto;    
+}
+
+.SendResults table td
+{
+    text-align: center;    
+}
+
+.InfoPanel
+{
+    color: Red;
+    font-weight:bold;
+    text-align: center;
+    padding: 5px;
+}

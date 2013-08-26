@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TrambambuleDBContext">
+  <DataContextMoniker Name="/TrambambuleDBContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9d50a2cb-0a81-487a-b9a6-0a26bedefa08" absoluteBounds="0.75, 1.25, 2, 1.1939925130208338">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/Match" />
+      <nestedChildShapes>
+        <elementListCompartment Id="48db07e3-6800-4a25-8d9c-6e3a303eebc3" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f52664ac-affc-481a-a60c-ed53f9c375df" absoluteBounds="3.5, 1.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a8e3b9f-3888-447e-9126-5abe7de7b235" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="157601d9-58f5-4226-8233-421251d6be61" absoluteBounds="3.5, 3.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="30057ec0-c978-47fd-8040-681fe3d3e440" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" absoluteBounds="6.25, 0.875, 2, 1.9631982421874998">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatchPlayer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a3fad22e-fec4-4c49-8f81-3954bb3650df" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (3.5 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Match/Match_TeamMatch" />
+      <nodes>
+        <classShapeMoniker Id="9d50a2cb-0a81-487a-b9a6-0a26bedefa08" />
+        <classShapeMoniker Id="f52664ac-affc-481a-a60c-ed53f9c375df" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.85659912109375); (7.25 : 4.85659912109375); (7.25 : 2.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Player/Player_TeamMatchPlayer" />
+      <nodes>
+        <classShapeMoniker Id="157601d9-58f5-4226-8233-421251d6be61" />
+        <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.91429768880208); (6.25 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/TeamMatch/TeamMatch_TeamMatchPlayer" />
+      <nodes>
+        <classShapeMoniker Id="f52664ac-affc-481a-a60c-ed53f9c375df" />
+        <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
