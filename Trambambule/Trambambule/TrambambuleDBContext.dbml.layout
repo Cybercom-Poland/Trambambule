@@ -8,12 +8,6 @@
         <elementListCompartment Id="48db07e3-6800-4a25-8d9c-6e3a303eebc3" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f52664ac-affc-481a-a60c-ed53f9c375df" absoluteBounds="3.5, 1.125, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatch" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4a8e3b9f-3888-447e-9126-5abe7de7b235" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="157601d9-58f5-4226-8233-421251d6be61" absoluteBounds="3.5, 3.875, 2, 1.9631982421875005">
       <DataClassMoniker Name="/TrambambuleDBContextDataContext/Player" />
       <nestedChildShapes>
@@ -26,25 +20,31 @@
         <elementListCompartment Id="a3fad22e-fec4-4c49-8f81-3954bb3650df" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (3.5 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Match/Match_TeamMatch" />
-      <nodes>
-        <classShapeMoniker Id="9d50a2cb-0a81-487a-b9a6-0a26bedefa08" />
-        <classShapeMoniker Id="f52664ac-affc-481a-a60c-ed53f9c375df" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.85659912109375); (7.25 : 4.85659912109375); (7.25 : 2.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.85659912109375); (7.25 : 4.85659912109375); (7.25 : 2.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrambambuleDBContextDataContext/Player/Player_TeamMatchPlayer" />
       <nodes>
         <classShapeMoniker Id="157601d9-58f5-4226-8233-421251d6be61" />
         <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.91429768880208); (6.25 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="c6732d09-ef00-4d59-ae2e-4782efec880a" absoluteBounds="4, 1.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d4b8c13c-7e2a-4799-aacb-373bf7a684b0" absoluteBounds="4.015, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6 : 1.98159912109375); (6.25 : 1.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TrambambuleDBContextDataContext/TeamMatch/TeamMatch_TeamMatchPlayer" />
       <nodes>
-        <classShapeMoniker Id="f52664ac-affc-481a-a60c-ed53f9c375df" />
+        <classShapeMoniker Id="c6732d09-ef00-4d59-ae2e-4782efec880a" />
         <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (4 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Match/Match_TeamMatch" />
+      <nodes>
+        <classShapeMoniker Id="9d50a2cb-0a81-487a-b9a6-0a26bedefa08" />
+        <classShapeMoniker Id="c6732d09-ef00-4d59-ae2e-4782efec880a" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

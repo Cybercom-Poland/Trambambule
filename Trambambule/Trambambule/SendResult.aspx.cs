@@ -12,7 +12,7 @@ namespace Trambambule
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
                 tbxPlayer1Off.Focus();
         }
 
@@ -21,12 +21,14 @@ namespace Trambambule
             List<Player> players = DataAccess.GetPlayers();
             int g1 = int.Parse(tbxScoreA.Text);
             int g2 = int.Parse(tbxScoreB.Text);
-            Common.EResult t1Result = GetResult(g1, g2);
-            Common.EResult t2Result = GetResult(g2, g1);
+            Common.EResult t1Result = Common.GetResult(g1, g2);
+            Common.EResult t2Result = Common.GetResult(g2, g1);
 
             Match match = new Match() { Id = Guid.NewGuid(), Timestamp = DateTime.Now };
-            TeamMatch tm1 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, Result = (byte)t1Result, Goals = g1 };
-            TeamMatch tm2 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, Result = (byte)t2Result, Goals = g2 };
+            TeamMatch tm1 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, 
+                Result = (byte)t1Result, GoalsScored = g1, GoalsLost = g2 };
+            TeamMatch tm2 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, 
+                Result = (byte)t2Result, GoalsScored = g2, GoalsLost = g1 };
             Player p1Off = DataAccess.GetPlayer(tbxPlayer1Off.Text);
             Player p1Def = DataAccess.GetPlayer(tbxPlayer1Deff.Text);
             Player p2Off = DataAccess.GetPlayer(tbxPlayer2Off.Text);
@@ -63,14 +65,16 @@ namespace Trambambule
 
             using (TrambambuleDBContextDataContext context = new TrambambuleDBContextDataContext())
             {
-                PlayerHelper.FillPlayerRating(ref tmp1Off, context.TeamMatchPlayers.Where(p => p.PlayerId == tmp1Off.PlayerId)
-                    .OrderByDescending(p => p.Timestamp).FirstOrDefault(), t1Result, g1, g2);
-                PlayerHelper.FillPlayerRating(ref tmp1Def, context.TeamMatchPlayers.Where(p => p.PlayerId == tmp1Def.PlayerId)
-                    .OrderByDescending(p => p.Timestamp).FirstOrDefault(), t1Result, g1, g2);
-                PlayerHelper.FillPlayerRating(ref tmp2Off, context.TeamMatchPlayers.Where(p => p.PlayerId == tmp2Off.PlayerId)
-                    .OrderByDescending(p => p.Timestamp).FirstOrDefault(), t2Result, g2, g1);
-                PlayerHelper.FillPlayerRating(ref tmp2Def, context.TeamMatchPlayers.Where(p => p.PlayerId == tmp2Def.PlayerId)
-                    .OrderByDescending(p => p.Timestamp).FirstOrDefault(), t2Result, g2, g1);
+                PlayerHelper.FillPlayersRating(ref tmp1Off, ref tmp1Def, ref tmp2Off, ref tmp2Def,
+                    context.TeamMatchPlayers.Where(p => p.PlayerId == tmp1Off.PlayerId)
+                        .OrderByDescending(p => p.Timestamp).FirstOrDefault(),
+                    context.TeamMatchPlayers.Where(p => p.PlayerId == tmp1Def.PlayerId)
+                        .OrderByDescending(p => p.Timestamp).FirstOrDefault(),
+                    context.TeamMatchPlayers.Where(p => p.PlayerId == tmp2Off.PlayerId)
+                        .OrderByDescending(p => p.Timestamp).FirstOrDefault(),
+                    context.TeamMatchPlayers.Where(p => p.PlayerId == tmp2Def.PlayerId)
+                        .OrderByDescending(p => p.Timestamp).FirstOrDefault(),
+                    g1, g2);
 
                 context.Matches.InsertOnSubmit(match);
                 context.TeamMatches.InsertOnSubmit(tm1);
@@ -85,13 +89,6 @@ namespace Trambambule
             btnClear_Click(sender, e);
             tbxPlayer1Off.Focus();
         }
-
-        private Common.EResult GetResult(int g1, int g2)
-        {
-            if (g1 > g2) return Common.EResult.Win;
-            if (g1 < g2) return Common.EResult.Loose;
-            return Common.EResult.Draw;
-        } 
 
         protected void btnClear_Click(object sender, EventArgs e)
         {

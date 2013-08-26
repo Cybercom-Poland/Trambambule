@@ -7,16 +7,6 @@
       <Association Name="Match_TeamMatch" Member="TeamMatches" ThisKey="Id" OtherKey="MatchId" Type="TeamMatch" />
     </Type>
   </Table>
-  <Table Name="dbo.TeamMatch" Member="TeamMatches">
-    <Type Name="TeamMatch">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MatchId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Goals" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Result" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="TeamMatch_TeamMatchPlayer" Member="TeamMatchPlayers" ThisKey="Id" OtherKey="TeamMatchId" Type="TeamMatchPlayer" />
-      <Association Name="Match_TeamMatch" Member="Match" ThisKey="MatchId" OtherKey="Id" Type="Match" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Player" Member="Players">
     <Type Name="Player">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -38,6 +28,17 @@
       <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Player_TeamMatchPlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" />
       <Association Name="TeamMatch_TeamMatchPlayer" Member="TeamMatch" ThisKey="TeamMatchId" OtherKey="Id" Type="TeamMatch" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeamMatch" Member="TeamMatches">
+    <Type Name="TeamMatch">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MatchId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GoalsScored" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoalsLost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Result" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="TeamMatch_TeamMatchPlayer" Member="TeamMatchPlayers" ThisKey="Id" OtherKey="TeamMatchId" Type="TeamMatchPlayer" />
+      <Association Name="Match_TeamMatch" Member="Match" ThisKey="MatchId" OtherKey="Id" Type="Match" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

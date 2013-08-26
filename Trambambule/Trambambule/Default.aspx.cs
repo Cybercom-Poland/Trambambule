@@ -38,10 +38,6 @@ namespace Trambambule
             {
                 List<TeamMatch> playerMatches = context.TeamMatches.Where(p =>
                     p.TeamMatchPlayers.Any(x => x.PlayerId == player.Id)).ToList();
-                List<TeamMatch> rivalMatches = context.TeamMatches.Where(p =>
-                    !p.TeamMatchPlayers.Any(x => x.PlayerId == player.Id) &&
-                    context.TeamMatches.Any(x => x.MatchId == p.MatchId && x.TeamMatchPlayers.Any(z => z.PlayerId == player.Id)))
-                    .ToList();
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("Rozegranych: " + playerMatches.Count());
                 sb.AppendLine("Wygranych: " +  playerMatches.Count(p => p.Result == (int)Common.EResult.Win));
@@ -59,8 +55,16 @@ namespace Trambambule
                     && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence));
                 sb.AppendLine("Zremisowanych [obrona]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw
                     && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence));
-                sb.AppendLine("Goli strzelonych: " + playerMatches.Sum(p => p.Goals));
-                sb.AppendLine("Goli straconych: " + rivalMatches.Sum(p => p.Goals));
+                sb.AppendLine("Goli strzelonych: " + playerMatches.Sum(p => p.GoalsScored));
+                sb.AppendLine("Goli straconych: " + playerMatches.Sum(p => p.GoalsLost));
+                sb.AppendLine("Goli strzelonych [atak]: " + playerMatches.Where(p =>
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsScored));
+                sb.AppendLine("Goli straconych [atak]: " + playerMatches.Where(p =>
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsLost));
+                sb.AppendLine("Goli strzelonych [obrona]: " + playerMatches.Where(p => 
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsScored));
+                sb.AppendLine("Goli straconych [obrona]: " + playerMatches.Where(p =>
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsLost));
                 sb = sb.Replace(Environment.NewLine, "<br/>");
                 pnlUserStatsDetails.Controls.Add(new LiteralControl(sb.ToString()));
             }

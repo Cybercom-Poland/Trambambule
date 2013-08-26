@@ -19,5 +19,12 @@ namespace Trambambule
             Offence = 1,
             Defence = 0
         }
+
+        public static Common.EResult GetResult(int g1, int g2)
+        {
+            if (g1 > g2) return Common.EResult.Win;
+            if (g1 < g2) return Common.EResult.Loose;
+            return Common.EResult.Draw;
+        } 
     }
 }

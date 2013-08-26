@@ -12,9 +12,18 @@ namespace Trambambule
             return player.FirstName + " " + player.LastName;
         }
 
-        public static bool FillPlayerRating(ref TeamMatchPlayer currentMatchData, TeamMatchPlayer lastMatchData,
-            Common.EResult result, int goalsScored, int goalsConcerned)
+        public static bool FillPlayersRating(
+            ref TeamMatchPlayer playerA1MatchData,
+            ref TeamMatchPlayer playerA2MatchData,
+            ref TeamMatchPlayer playerB1MatchData,
+            ref TeamMatchPlayer playerB2MatchData,
+            TeamMatchPlayer playerA1LastMatchData,
+            TeamMatchPlayer playerA2LastMatchData,
+            TeamMatchPlayer playerB1LastMatchData,
+            TeamMatchPlayer playerB2LastMatchData,
+            int goalsA, int goalsB)
         {
+            
             return true;
         }
     }
