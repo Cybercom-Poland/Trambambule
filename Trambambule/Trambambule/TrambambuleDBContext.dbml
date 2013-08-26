@@ -37,6 +37,7 @@
       <Column Name="GoalsScored" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="GoalsLost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Result" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="TeamMatch_TeamMatchPlayer" Member="TeamMatchPlayers" ThisKey="Id" OtherKey="TeamMatchId" Type="TeamMatchPlayer" />
       <Association Name="Match_TeamMatch" Member="Match" ThisKey="MatchId" OtherKey="Id" Type="Match" IsForeignKey="true" />
     </Type>

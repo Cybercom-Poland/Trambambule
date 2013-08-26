@@ -711,6 +711,8 @@ namespace Trambambule
 		
 		private byte _Result;
 		
+		private System.DateTime _Timestamp;
+		
 		private EntitySet<TeamMatchPlayer> _TeamMatchPlayers;
 		
 		private EntityRef<Match> _Match;
@@ -729,6 +731,8 @@ namespace Trambambule
     partial void OnGoalsLostChanged();
     partial void OnResultChanging(byte value);
     partial void OnResultChanged();
+    partial void OnTimestampChanging(System.DateTime value);
+    partial void OnTimestampChanged();
     #endregion
 		
 		public TeamMatch()
@@ -838,6 +842,26 @@ namespace Trambambule
 					this._Result = value;
 					this.SendPropertyChanged("Result");
 					this.OnResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Timestamp", DbType="DateTime NOT NULL")]
+		public System.DateTime Timestamp
+		{
+			get
+			{
+				return this._Timestamp;
+			}
+			set
+			{
+				if ((this._Timestamp != value))
+				{
+					this.OnTimestampChanging(value);
+					this.SendPropertyChanging();
+					this._Timestamp = value;
+					this.SendPropertyChanged("Timestamp");
+					this.OnTimestampChanged();
 				}
 			}
 		}

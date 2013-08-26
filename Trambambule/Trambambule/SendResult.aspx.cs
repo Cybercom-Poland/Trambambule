@@ -26,9 +26,9 @@ namespace Trambambule
 
             Match match = new Match() { Id = Guid.NewGuid(), Timestamp = DateTime.Now };
             TeamMatch tm1 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, 
-                Result = (byte)t1Result, GoalsScored = g1, GoalsLost = g2 };
+                Result = (byte)t1Result, GoalsScored = g1, GoalsLost = g2, Timestamp = DateTime.Now };
             TeamMatch tm2 = new TeamMatch() { Id = Guid.NewGuid(), MatchId = match.Id, 
-                Result = (byte)t2Result, GoalsScored = g2, GoalsLost = g1 };
+                Result = (byte)t2Result, GoalsScored = g2, GoalsLost = g1, Timestamp = DateTime.Now };
             Player p1Off = DataAccess.GetPlayer(tbxPlayer1Off.Text);
             Player p1Def = DataAccess.GetPlayer(tbxPlayer1Deff.Text);
             Player p2Off = DataAccess.GetPlayer(tbxPlayer2Off.Text);
