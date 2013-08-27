@@ -13,7 +13,8 @@ namespace Trambambule
         private static readonly double MAX_RD = 350;
         private static readonly double STABLE_RD = 50;
         private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
-        private static readonly double MAGIC_Q_CONSTANT_SQUARED = Math.Pow(Math.Log(10) / 400, 2);
+        private static readonly double MAGIC_Q_CONSTANT = Math.Log(10) / 400;
+        private static readonly double MAGIC_Q_CONSTANT_SQUARED = Math.Pow(MAGIC_Q_CONSTANT, 2);
         private static readonly double PI_SQUARED = Math.PI * Math.PI;
 
         public static string GetPlayerName(Player player)
@@ -76,10 +77,16 @@ namespace Trambambule
             TeamMatchPlayer secondOppMatchData,
             int ourGoals, int oppGoals)
         {
+            // MAGIC goes here: http://www.glicko.net/glicko/glicko.pdf
             double result = CalculateResult(ourGoals, oppGoals);
             double oppRating = SanitizeRating((double) (firstOppMatchData.Rating + secondOppMatchData.Rating - allyMatchData.Rating));
             double oppRD = (double) (firstOppMatchData.RD + secondOppMatchData.RD + allyMatchData.RD) / 3;
             double gRD = 1 / Math.Sqrt(1 + 3 * MAGIC_Q_CONSTANT_SQUARED * oppRating * oppRating / PI_SQUARED);
+            double eSrrRD = 1 / (1 + Math.Pow(10, -gRD * ((double) oldMatchData.Rating - oppRating) / 400));
+            double dSqaured = 1 / (MAGIC_Q_CONSTANT_SQUARED * gRD * gRD * eSrrRD * (1 - eSrrRD));
+            double rdSquared = 1 / (1 / (double) (oldMatchData.RD * oldMatchData.RD) + 1 / dSqaured);
+            newMatchData.Rating = oldMatchData.Rating + MAGIC_Q_CONSTANT / rdSquared * gRD * result - eSrrRD;
+            newMatchData.RD = Math.Sqrt(rdSquared);
         }
 
         private static double SanitizeRating(double rating)
