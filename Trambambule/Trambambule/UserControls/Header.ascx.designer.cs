@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trambambule {
+namespace Trambambule.UserControls {
     
     
-    public partial class Default {
+    public partial class Header {
         
         /// <summary>
-        /// gvPlayerResults control.
+        /// hlSendResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlayerResults;
+        protected global::System.Web.UI.WebControls.HyperLink hlSendResult;
         
         /// <summary>
-        /// sqldsResults control.
+        /// hlResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sqldsResults;
+        protected global::System.Web.UI.WebControls.HyperLink hlResults;
     }
 }

@@ -7,10 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="upanSendResults" runat="server">
         <ContentTemplate>
-                
-            <asp:Panel ID="pnlSendResult" runat="server" CssClass="SendResults" DefaultButton="btnSubmit">
-                <h1>Zgłoś wynik meczu</h1>
-                <table>
+                        
+            <h1>Zgłoś wynik meczu</h1>
+
+            <asp:Panel ID="pnlSendResult" runat="server" CssClass="ContentPanel" DefaultButton="btnSubmit">
+                <table class="SendResults">
                     <tr>
                         <td>
                             <h2>
@@ -33,7 +34,7 @@
                     <tr>
                         <td>
                             <asp:TextBox ID="tbxPlayer1Off" runat="server" Columns="40" OnTextChanged="tbxPlayer_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tbxPlayer1Off"
+                            <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tbxPlayer1Off" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender1" runat="server" TargetControlID="rfv1">
                             </asp:ValidatorCalloutExtender>
@@ -43,7 +44,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="tbxPlayer2Off" runat="server" Columns="40" OnTextChanged="tbxPlayer_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbxPlayer2Off"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbxPlayer2Off" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender2" runat="server" TargetControlID="RequiredFieldValidator1">
                             </asp:ValidatorCalloutExtender>
@@ -62,7 +63,7 @@
                     <tr>
                         <td>
                             <asp:TextBox ID="tbxPlayer1Deff" runat="server" Columns="40" OnTextChanged="tbxPlayer_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbxPlayer1Deff"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbxPlayer1Deff" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender3" runat="server" TargetControlID="RequiredFieldValidator2">
                             </asp:ValidatorCalloutExtender>
@@ -72,7 +73,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="tbxPlayer2Deff" runat="server" Columns="40" OnTextChanged="tbxPlayer_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbxPlayer2Deff"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbxPlayer2Deff" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender4" runat="server" TargetControlID="RequiredFieldValidator3">
                             </asp:ValidatorCalloutExtender>
@@ -94,7 +95,7 @@
                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="tbxScoreA"
                                 FilterMode="ValidChars" FilterType="Numbers">
                             </asp:FilteredTextBoxExtender>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbxScoreA"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbxScoreA" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender5" runat="server" TargetControlID="RequiredFieldValidator4">
                             </asp:ValidatorCalloutExtender>
@@ -103,7 +104,7 @@
                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="tbxScoreB"
                                 FilterMode="ValidChars" FilterType="Numbers">
                             </asp:FilteredTextBoxExtender>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbxScoreB"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbxScoreB" ValidationGroup="vgsr"
                                 Display="None" ErrorMessage="Pole wymagane"></asp:RequiredFieldValidator>
                             <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender6" runat="server" TargetControlID="RequiredFieldValidator5">
                             </asp:ValidatorCalloutExtender>
@@ -111,8 +112,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:Button ID="btnSubmit" runat="server" Text="Zgłoś wynik" OnClick="btnSubmit_Click"
-                                style="margin-top: 5px;" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="Zgłoś wynik" OnClick="btnSubmit_Click" CausesValidation="true"
+                                style="margin-top: 5px;" ValidationGroup="vgsr" />
                             &nbsp;<asp:Button ID="btnClear" runat="server" Text="Wyczyść" OnClick="btnClear_Click" 
                                 CausesValidation="false" />
 
@@ -122,7 +123,6 @@
                 </table>
             </asp:Panel>
             
-            <asp:HyperLink ID="hlResults" runat="server" NavigateUrl="~/Default.aspx" Text="Zobacz wyniki"></asp:HyperLink>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

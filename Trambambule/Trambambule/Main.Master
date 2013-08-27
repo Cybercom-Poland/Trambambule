@@ -1,6 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Trambambule.Main" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/UserControls/Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="~/UserControls/UserBasicStats.ascx" TagPrefix="uc" TagName="UserBasicStats" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,11 +18,24 @@
     <form id="form1" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+    
+    <div class="MainPanel">
+        <div class="HeaderPanel">
+            <uc:Header id="ucHeader" runat="server"></uc:Header>
+        </div>
+        <div class="LeftPanel">            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">        
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="RightPanel">
+            <uc:UserBasicStats id="ucUserBasicStats" runat="server"></uc:UserBasicStats>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="Footer">
+            by Mariusz Milewski & Maciej Górski 2013
+        </div>
     </div>
+    
     </form>
 </body>
 </html>

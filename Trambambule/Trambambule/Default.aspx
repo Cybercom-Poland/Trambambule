@@ -2,20 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <h1>Zgłoś wynik meczu</h1>
 
-    <asp:HyperLink ID="hlSendResult" runat="server" NavigateUrl="~/SendResult.aspx" Text="Zgłoś wynik meczu"></asp:HyperLink>
-
-    <asp:GridView ID="gvPlayerResults" runat="server" DataSourceID="sqldsResults" Visible="false">        
-    </asp:GridView>
-    <asp:SqlDataSource ID="sqldsResults" runat="server" ConnectionString="<%$ ConnectionStrings:TrambambuleConnectionString %>"
-        SelectCommand="GetUserResults" SelectCommandType="StoredProcedure">        
-    </asp:SqlDataSource>
-
-    <asp:Panel ID="pnlUserStats" runat="server" CssClass="SendResults">
-        <asp:DropDownList ID="ddlPlayers" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPlayers_SelectedIndexChanged"
-            DataTextField="Name" DataValueField="Id">
-        </asp:DropDownList>
-        <asp:Panel ID="pnlUserStatsDetails" runat="server"></asp:Panel>
-    </asp:Panel>
-
+    <div class="ContentPanel">
+        <asp:GridView ID="gvPlayerResults" runat="server" DataSourceID="sqldsResults" CssClass="Table">        
+        </asp:GridView>
+        <asp:SqlDataSource ID="sqldsResults" runat="server" ConnectionString="<%$ ConnectionStrings:TrambambuleConnectionString %>"
+            SelectCommand="GetUserResults" SelectCommandType="StoredProcedure">        
+        </asp:SqlDataSource>
+    </div>
+    
 </asp:Content>

@@ -4,18 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text;
 
-namespace Trambambule
+namespace Trambambule.UserControls
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Header : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                gvPlayerResults.DataBind();
-            }
+
         }
     }
 }
