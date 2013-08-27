@@ -10,6 +10,7 @@ namespace Trambambule
         private static readonly long SECONDS_IN_YEAR = 31536000;
         private static readonly double INITIAL_RATING = 1500;
         private static readonly double MIN_RATING = 100;
+        private static readonly double MIN_RD = 30;
         private static readonly double MAX_RD = 350;
         private static readonly double STABLE_RD = 50;
         private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
@@ -85,8 +86,8 @@ namespace Trambambule
             double eSrrRD = 1 / (1 + Math.Pow(10, -gRD * ((double) oldMatchData.Rating - oppRating) / 400));
             double dSqaured = 1 / (MAGIC_Q_CONSTANT_SQUARED * gRD * gRD * eSrrRD * (1 - eSrrRD));
             double rdSquared = 1 / (1 / (double) (oldMatchData.RD * oldMatchData.RD) + 1 / dSqaured);
-            newMatchData.Rating = oldMatchData.Rating + MAGIC_Q_CONSTANT / rdSquared * gRD * result - eSrrRD;
-            newMatchData.RD = Math.Sqrt(rdSquared);
+            newMatchData.Rating = SanitizeRating((double) oldMatchData.Rating + MAGIC_Q_CONSTANT / rdSquared * gRD * result - eSrrRD);
+            newMatchData.RD = SanitizeRD(Math.Sqrt(rdSquared));
         }
 
         private static double SanitizeRating(double rating)
@@ -96,6 +97,15 @@ namespace Trambambule
                 rating = MIN_RATING;
             }
             return rating;
+        }
+
+        private static double SanitizeRD(double rd)
+        {
+            if (rd < MIN_RD)
+            {
+                rd = MIN_RD;
+            }
+            return rd;
         }
 
         private static double CalculateResult(int ourGoals, int oppGoals)
