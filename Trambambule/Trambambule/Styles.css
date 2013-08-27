@@ -43,11 +43,11 @@ h1
     background-color: #CCCCCC;
     color: white;
     font-size: 14px;
-    height: 20px;
     margin: 0;
     padding: 5px 15px;
     text-align: left;
     text-transform: capitalize;
+    height: 20px;
 }
 
 .MainPanel
@@ -161,6 +161,7 @@ h1
     padding: 5px;
     position: absolute;
     width: 251px;
+    height: 30px;
 }
 .SideBarPanel .content
 {
