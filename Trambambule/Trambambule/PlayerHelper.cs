@@ -8,6 +8,7 @@ namespace Trambambule
     public class PlayerHelper
     {
         private static readonly long SECONDS_IN_YEAR = 31536000;
+        private static readonly double INITIAL_RATING = 1500;
         private static readonly double MAX_RD = 350;
         private static readonly double STABLE_RD = 50;
         private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
@@ -58,9 +59,9 @@ namespace Trambambule
         private static TeamMatchPlayer CreateEmptyMatchData()
         {
             TeamMatchPlayer matchData = new TeamMatchPlayer();
-            matchData.Rating = 1500;
-            matchData.RD = 350;
-            matchData.Timestamp = DateTime.Now;
+            matchData.Rating = INITIAL_RATING;
+            matchData.RD = MAX_RD;
+            matchData.Timestamp = new DateTime(2012, 08, 23);
             return matchData;
         }
 
