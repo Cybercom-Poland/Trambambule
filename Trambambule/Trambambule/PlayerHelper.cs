@@ -9,9 +9,11 @@ namespace Trambambule
     {
         private static readonly long SECONDS_IN_YEAR = 31536000;
         private static readonly double INITIAL_RATING = 1500;
+        private static readonly double MIN_RATING = 100;
         private static readonly double MAX_RD = 350;
         private static readonly double STABLE_RD = 50;
         private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
+        private static readonly double MAGIC_Q_CONSTANT_SQUARED = Math.Pow(Math.Log(10) / 400, 2);
 
         public static string GetPlayerName(Player player)
         {
@@ -74,6 +76,17 @@ namespace Trambambule
             int ourGoals, int oppGoals)
         {
             double result = CalculateResult(ourGoals, oppGoals);
+            double oppRating = SanitizeRating((double) (firstOppMatchData.Rating + secondOppMatchData.Rating - allyMatchData.Rating));
+            double oppRD = (double) (firstOppMatchData.RD + secondOppMatchData.RD + allyMatchData.RD) / 3;
+        }
+
+        private static double SanitizeRating(double rating)
+        {
+            if (rating < MIN_RATING)
+            {
+                rating = MIN_RATING;
+            }
+            return rating;
         }
 
         private static double CalculateResult(int ourGoals, int oppGoals)
