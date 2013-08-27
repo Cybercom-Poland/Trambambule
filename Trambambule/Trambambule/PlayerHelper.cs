@@ -14,6 +14,7 @@ namespace Trambambule
         private static readonly double STABLE_RD = 50;
         private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
         private static readonly double MAGIC_Q_CONSTANT_SQUARED = Math.Pow(Math.Log(10) / 400, 2);
+        private static readonly double PI_SQUARED = Math.PI * Math.PI;
 
         public static string GetPlayerName(Player player)
         {
@@ -78,6 +79,7 @@ namespace Trambambule
             double result = CalculateResult(ourGoals, oppGoals);
             double oppRating = SanitizeRating((double) (firstOppMatchData.Rating + secondOppMatchData.Rating - allyMatchData.Rating));
             double oppRD = (double) (firstOppMatchData.RD + secondOppMatchData.RD + allyMatchData.RD) / 3;
+            double gRD = 1 / Math.Sqrt(1 + 3 * MAGIC_Q_CONSTANT_SQUARED * oppRating * oppRating / PI_SQUARED);
         }
 
         private static double SanitizeRating(double rating)
