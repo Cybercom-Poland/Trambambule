@@ -86,7 +86,7 @@ namespace Trambambule
                 context.SubmitChanges();
             }
             pnlInfo.Controls.Add(new LiteralControl("Mecz został zapisany"));
-            btnClear_Click(sender, e);
+            tbxScoreA.Text = tbxScoreB.Text = "";
             tbxPlayer1Off.Focus();
         }
 

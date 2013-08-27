@@ -7,10 +7,10 @@ namespace Trambambule
 {
     public class PlayerHelper
     {
-        private static const long SECONDS_IN_YEAR = 31536000;
-        private static const double MAX_RD = 350;
-        private static const double STABLE_RD = 50;
-        private static const double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
+        private static readonly long SECONDS_IN_YEAR = 31536000;
+        private static readonly double MAX_RD = 350;
+        private static readonly double STABLE_RD = 50;
+        private static readonly double MAGIC_C_CONSTANT = Math.Sqrt((MAX_RD * MAX_RD - STABLE_RD * STABLE_RD) / SECONDS_IN_YEAR);
 
         public static string GetPlayerName(Player player)
         {
