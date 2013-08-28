@@ -83,10 +83,10 @@ namespace Trambambule
             double oppRating = SanitizeRating((double) (firstOppMatchData.Rating + secondOppMatchData.Rating - allyMatchData.Rating));
             double oppRD = (double) (firstOppMatchData.RD + secondOppMatchData.RD + allyMatchData.RD) / 3;
             double gRD = 1 / Math.Sqrt(1 + 3 * MAGIC_Q_CONSTANT_SQUARED * oppRating * oppRating / PI_SQUARED);
-            double eSrrRD = 1 / (1 + Math.Pow(10, -gRD * ((double) oldMatchData.Rating - oppRating) / 400));
-            double dSqaured = 1 / (MAGIC_Q_CONSTANT_SQUARED * gRD * gRD * eSrrRD * (1 - eSrrRD));
+            double expectedResult = 1 / (1 + Math.Pow(10, -gRD * ((double) oldMatchData.Rating - oppRating) / 400));
+            double dSqaured = 1 / (MAGIC_Q_CONSTANT_SQUARED * gRD * gRD * expectedResult * (1 - expectedResult));
             double rdSquared = 1 / (1 / (double) (oldMatchData.RD * oldMatchData.RD) + 1 / dSqaured);
-            newMatchData.Rating = SanitizeRating((double) oldMatchData.Rating + MAGIC_Q_CONSTANT * rdSquared * gRD * (result - eSrrRD));
+            newMatchData.Rating = SanitizeRating((double) oldMatchData.Rating + MAGIC_Q_CONSTANT * rdSquared * gRD * (result - expectedResult));
             newMatchData.RD = SanitizeRD(Math.Sqrt(rdSquared));
         }
 
