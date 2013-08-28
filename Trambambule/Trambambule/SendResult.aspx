@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:UpdatePanel ID="upanSendResults" runat="server">
+    <asp:UpdatePanel ID="upanSendResults" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
                         
             <h1>Zgłoś wynik meczu</h1>
@@ -56,7 +56,9 @@
                     <tr>
                         <td colspan="2">
                             <h3>
+                                <asp:ImageButton ImageUrl="~/Assets/exchange.png" OnClick="ibtn1_Click" runat="server" ID="ibtn1" style="float: left; height: 20px;" />
                                 Obrona
+                                <asp:ImageButton ImageUrl="~/Assets/exchange.png" OnClick="ibtn2_Click" runat="server" ID="ibtn2" style="float: right; height: 20px;" />
                             </h3>
                         </td>
                     </tr>

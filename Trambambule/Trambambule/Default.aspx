@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <h1>Zgłoś wynik meczu</h1>
+    <h1>Ranking graczy</h1>
 
     <div class="ContentPanel">
         <asp:GridView ID="gvPlayerResults" runat="server" DataSourceID="sqldsResults" CssClass="Table">        

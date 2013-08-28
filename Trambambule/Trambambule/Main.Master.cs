@@ -11,7 +11,7 @@ namespace Trambambule
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.Title = SiteMap.CurrentNode.Title;
         }
     }
 }

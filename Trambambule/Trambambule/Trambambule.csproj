@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cybercom_logo.png" />
+    <Content Include="Assets\exchange.png" />
     <Content Include="Default.aspx" />
     <Content Include="SendResult.aspx" />
     <Content Include="Styles.css" />
@@ -135,6 +136,7 @@
       <LastGenOutput>TrambambuleDBContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

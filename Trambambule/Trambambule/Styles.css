@@ -225,6 +225,9 @@ h1
    border: 0 none;
     padding: 5px;
 }
+.Table th {
+    text-align: left;
+}
 .Table tr:nth-child(odd)
 {
    background-color: #FFFFFF;

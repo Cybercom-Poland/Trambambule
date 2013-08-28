@@ -105,6 +105,19 @@ namespace Trambambule
 				return this.GetTable<TeamMatch>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetPlayerRankPosition", IsComposable=true)]
+		public System.Nullable<int> GetPlayerRankPosition([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PlayerId", DbType="Int")] System.Nullable<int> playerId)
+		{
+			return ((System.Nullable<int>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), playerId).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ClearAllMatches")]
+		public int ClearAllMatches()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Match")]

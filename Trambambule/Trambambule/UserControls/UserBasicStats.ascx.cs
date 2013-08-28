@@ -42,12 +42,12 @@ namespace Trambambule.UserControls
                     p.TeamMatchPlayers.Any(x => x.PlayerId == player.Id)).ToList();
                 StringBuilder sb = new StringBuilder();
 
-                List<TeamMatch> lastGames = playerMatches.OrderByDescending(p => p.Timestamp).Take(5).ToList();
+                List<TeamMatch> lastGames = playerMatches.OrderByDescending(p => p.Timestamp).Take(10).ToList();
                 if(lastGames.Any())
                 {
                     TeamMatchPlayer playerData = lastGames.First().TeamMatchPlayers.First(p => p.PlayerId == player.Id);
-                    sb.AppendLine("Obecny RD: " + playerData.RD);
-                    sb.AppendLine("Obecny ranking: " + playerData.Rating);
+                    sb.AppendLine("Pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
+                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue ? playerData.Rating.Value.ToString("n4") : string.Empty));
                     string form = string.Empty;
                     foreach(TeamMatch tm in lastGames)
                         form += GetMatchResultLabel(tm);
@@ -55,12 +55,12 @@ namespace Trambambule.UserControls
                     sb.Append("<hr/>");
                 }
 
-                sb.AppendLine("Rozegranych: " + playerMatches.Count());
-                sb.AppendLine("Wygranych: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Win));
-                sb.AppendLine("Przegranych: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Loose));
-                sb.AppendLine("Zremisowanych: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw));
-                sb.AppendLine("Goli strzelonych: " + playerMatches.Sum(p => p.GoalsScored));
-                sb.AppendLine("Goli straconych: " + playerMatches.Sum(p => p.GoalsLost));
+                sb.AppendLine("Rozegranych: " + playerMatches.Select(p => new { Mid = p.MatchId }).Distinct().Count());
+                sb.AppendLine("Wygranych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Win));
+                sb.AppendLine("Przegranych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Loose));
+                sb.AppendLine("Zremisowanych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Draw));
+                sb.AppendLine("Goli strzelonych: " + playerMatches.Select(p => new { Mid = p.MatchId, GoalsScored = p.GoalsScored }).Distinct().Sum(p => p.GoalsScored));
+                sb.AppendLine("Goli straconych: " + playerMatches.Select(p => new { Mid = p.MatchId, GoalsLost = p.GoalsLost }).Distinct().Sum(p => p.GoalsLost));
 
                 sb.Append("<hr/>");
 

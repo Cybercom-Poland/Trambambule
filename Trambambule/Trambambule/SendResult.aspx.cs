@@ -100,7 +100,11 @@ namespace Trambambule
         {
             TextBox tb = sender as TextBox;
             List<Player> players = DataAccess.GetPlayers();
-            if (!players.Any(p => tb.Text.Equals(PlayerHelper.GetPlayerName(p))))
+            if (!players.Any(p => tb.Text.Equals(PlayerHelper.GetPlayerName(p))) ||
+                (tb != tbxPlayer1Deff && tb.Text == tbxPlayer1Deff.Text) ||
+                (tb != tbxPlayer2Deff && tb.Text == tbxPlayer2Deff.Text) ||
+                (tb != tbxPlayer1Off && tb.Text == tbxPlayer1Off.Text) ||
+                (tb != tbxPlayer2Off && tb.Text == tbxPlayer2Off.Text))
             {
                 tb.Text = string.Empty;
                 tb.Focus();
@@ -109,6 +113,20 @@ namespace Trambambule
             else if (tb == tbxPlayer2Off) tbxPlayer1Deff.Focus();
             else if (tb == tbxPlayer1Deff) tbxPlayer2Deff.Focus();
             else if (tb == tbxPlayer2Deff) tbxScoreA.Focus();
+        }
+
+        protected void ibtn1_Click(object sender, ImageClickEventArgs e)
+        {
+            string temp = tbxPlayer1Deff.Text;
+            tbxPlayer1Deff.Text = tbxPlayer1Off.Text;
+            tbxPlayer1Off.Text = temp;
+        }
+
+        protected void ibtn2_Click(object sender, ImageClickEventArgs e)
+        {
+            string temp = tbxPlayer2Deff.Text;
+            tbxPlayer2Deff.Text = tbxPlayer2Off.Text;
+            tbxPlayer2Off.Text = temp;
         }
 
         [System.Web.Services.WebMethod]

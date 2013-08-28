@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Header.ascx.cs" Inherits="Trambambule.UserControls.Header" %>
 
-<img src="../Assets/cybercom_logo.png" alt="Cybercom Poland" class="headerLogo" />
+<asp:Image runat="server" ImageUrl="~/Assets/cybercom_logo.png" AlternateText="Cybercom Poland" CssClass="headerLogo" />
 <div class="menu">
     <ul>
         <li class="link">            

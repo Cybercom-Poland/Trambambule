@@ -42,4 +42,11 @@
       <Association Name="Match_TeamMatch" Member="Match" ThisKey="MatchId" OtherKey="Id" Type="Match" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetPlayerRankPosition" Method="GetPlayerRankPosition" IsComposable="true">
+    <Parameter Name="PlayerId" Parameter="playerId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ClearAllMatches" Method="ClearAllMatches">
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
