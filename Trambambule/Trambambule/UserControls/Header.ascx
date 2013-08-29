@@ -11,6 +11,16 @@
         <li class="link">            
             <asp:HyperLink ID="hlResults" runat="server" NavigateUrl="~/Default.aspx" Text="Ranking graczy"></asp:HyperLink>
         </li>
+        <li class="separator">
+        </li>
+        <li class="link">            
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/LastGames.aspx" Text="Ostatnie mecze"></asp:HyperLink>
+        </li>
+        <li class="separator">
+        </li>
+        <li class="link">            
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Help.aspx" Text="Pomoc"></asp:HyperLink>
+        </li>
     </ul>
 
     <span class="AppName">

@@ -61,6 +61,8 @@
     <Content Include="Assets\cybercom_logo.png" />
     <Content Include="Assets\exchange.png" />
     <Content Include="Default.aspx" />
+    <Content Include="Help.aspx" />
+    <Content Include="LastGames.aspx" />
     <Content Include="SendResult.aspx" />
     <Content Include="Styles.css" />
     <Content Include="UserControls\Header.ascx" />
@@ -83,6 +85,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LastGames.aspx.cs">
+      <DependentUpon>LastGames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LastGames.aspx.designer.cs">
+      <DependentUpon>LastGames.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>

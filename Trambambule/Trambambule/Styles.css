@@ -37,7 +37,9 @@ input[type=submit]:hover
 {
     background-color: #9E9E9E;
 }
-
+a {
+	color: inherit;
+}
 h1
 {
     background-color: #CCCCCC;
@@ -48,6 +50,7 @@ h1
     text-align: left;
     text-transform: capitalize;
     height: 20px;
+    border: 1px solid #ccc;
 }
 
 .MainPanel
@@ -58,7 +61,6 @@ h1
     border-width: 0 1px 1px 1px;
     border-style: solid;
     border-color: #CCCCCC;
-    min-height: 600px;   
 }
 
 .HeaderPanel
@@ -132,20 +134,18 @@ h1
 
 .LeftPanel
 {
-    width: 750px;  
-    float: left; 
     background-color: #EEEEEE;
+    width: 750px;
+    vertical-align: top;
     min-height: 600px;
-    display: block;
 }
 .RightPanel
 {
     background-color: #F7F7F7;
     border-left: 1px solid #CCCCCC;
-    display: block;
-    float: left;
-    min-height: 600px;
+    vertical-align: top;
     width: 249px;
+    min-height: 600px;
 }
 
 
@@ -163,9 +163,17 @@ h1
     width: 251px;
     height: 30px;
 }
+.SideBarPanel input.TopSelector {
+    background: none repeat scroll 0 0 #FDFDFD;
+    border-width: 1px 0;
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    width: 229px;
+}
 .SideBarPanel .content
 {
-    padding: 35px 10px 0;
+    padding: 5px 10px;
 }
 .SideBarPanel .content span
 {
@@ -175,7 +183,7 @@ h1
 
 .ContentPanel
 {
-    padding: 15px;
+    /*padding: 15px;*/
 }
 
 .ContentPanel h2
@@ -213,7 +221,7 @@ h1
     width: 100%;
     margin: 0;
     padding: 0;   
-    border: 1px solid #CCC;
+    border: 0px none;
 }
 .Table th
 {
@@ -228,21 +236,20 @@ h1
 .Table th {
     text-align: left;
 }
-.Table tr:nth-child(odd)
-{
-   background-color: #FFFFFF;
+.Table tr {
    font-weight: normal;
    margin: 0;
    padding: 0;
    border: 0 none;
+   border-bottom: 1px solid #ccc;
+}
+.Table tr:nth-child(odd)
+{
+   background-color: #FFFFFF;
 }
 .Table tr:nth-child(even) 
 {
    background-color: #FCFCFC;
-   font-weight: normal;
-   margin: 0;
-   padding: 0;
-   border: 0 none;
 }
 .Table tr:hover
 {
@@ -252,4 +259,39 @@ h1
 {
     border: 0 none;
     padding: 5px;
+}
+.Table tr.win {
+	background-color: #D0FFC9; border-bottom: 1px solid #ccc;
+}
+.Table tr.loose {
+	background-color: #FFE0E0; border-bottom: 1px solid #ccc;
+}
+.Table tr.draw {
+	background-color: #C9D2FF; border-bottom: 1px solid #ccc;
+}
+
+.AutoComplete 
+{
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #CCCCCC;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.AutoCompleteItem
+{
+    margin: 0;
+    padding: 5px;
+}
+.AutoCompleteItem
+{
+    margin: 0;
+    padding: 5px;
+}
+.AutoCompleteItemHighlighted
+{
+    margin: 0;
+    padding: 5px;
+    background-color: #EEEEEE;
+    font-weight: bold;
 }

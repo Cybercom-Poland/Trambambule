@@ -14,28 +14,30 @@ namespace Trambambule.UserControls
         {
             if (!Page.IsPostBack)
             {
-                ddlPlayers.DataSource = DataAccess.GetPlayers()
-                    .Select(p => new { Id = p.Id, Name = PlayerHelper.GetPlayerName(p) })
-                    .OrderBy(p => p.Name);
-                ddlPlayers.DataBind();
                 if (Session["UserBasicStatsPlayer"] != null)
-                    try { ddlPlayers.SelectedValue = ((Player)Session["UserBasicStatsPlayer"]).Id.ToString(); }
+                    try { tbxPlayers.Text = PlayerHelper.GetPlayerName((Player)Session["UserBasicStatsPlayer"]); }
                     catch { }
-                BindPlayerStats();
             }
+            Page.LoadComplete += new EventHandler(Page_LoadComplete);
         }
 
-        protected void ddlPlayers_SelectedIndexChanged(object sender, EventArgs e)
+        protected void Page_LoadComplete(object sender, EventArgs e)
         {
             BindPlayerStats();
         }
 
+        protected void tbxPlayers_TextChanged(object sender, EventArgs e)
+        {
+            Player player = DataAccess.GetPlayer(tbxPlayers.Text);
+            if (player == null) tbxPlayers.Text = string.Empty;
+            else Session["UserBasicStatsPlayer"] = player;
+        }
+
         private void BindPlayerStats()
         {
-            Player player = DataAccess.GetPlayer(ddlPlayers.SelectedItem.Text);
+            Player player = ((Player)Session["UserBasicStatsPlayer"]);
             if (player == null) return;
 
-            Session["UserBasicStatsPlayer"] = player;
             using (TrambambuleDBContextDataContext context = new TrambambuleDBContextDataContext())
             {
                 List<TeamMatch> playerMatches = context.TeamMatches.Where(p =>
@@ -47,7 +49,7 @@ namespace Trambambule.UserControls
                 {
                     TeamMatchPlayer playerData = lastGames.First().TeamMatchPlayers.First(p => p.PlayerId == player.Id);
                     sb.AppendLine("Pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
-                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue ? playerData.Rating.Value.ToString("n4") : string.Empty));
+                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue ? playerData.Rating.Value.ToString("n0") : string.Empty));
                     string form = string.Empty;
                     foreach(TeamMatch tm in lastGames)
                         form += GetMatchResultLabel(tm);
@@ -74,6 +76,14 @@ namespace Trambambule.UserControls
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsScored));
                 sb.AppendLine("Goli straconych [atak]: " + playerMatches.Where(p =>
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsLost));
+                try
+                {
+                    sb.AppendLine("Śr. goli strzelonych [atak]: " + playerMatches.Where(p =>
+                        p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Average(p => p.GoalsScored).ToString("n2"));
+                    sb.AppendLine("Śr. goli straconych [atak]: " + playerMatches.Where(p =>
+                        p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Average(p => p.GoalsLost).ToString("n2"));
+                }
+                catch { }
                 
                 sb.Append("<hr/>");
 
@@ -87,7 +97,14 @@ namespace Trambambule.UserControls
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsScored));
                 sb.AppendLine("Goli straconych [obrona]: " + playerMatches.Where(p =>
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsLost));
-
+                try
+                {
+                    sb.AppendLine("Śr. goli strzelonych [obrona]: " + playerMatches.Where(p =>
+                        p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Average(p => p.GoalsScored).ToString("n2"));
+                    sb.AppendLine("Śr. goli straconych [obrona]: " + playerMatches.Where(p =>
+                        p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Average(p => p.GoalsLost).ToString("n2"));
+                }
+                catch { }
                 sb = sb.Replace(Environment.NewLine, "<br/>");
                 lblStatsDetails.Text = sb.ToString();
             }
@@ -104,9 +121,22 @@ namespace Trambambule.UserControls
                     return "<span style='color: red;'>P </span>";
                 case Common.EResult.Win:
                     return "<span style='color: green;'>Z </span>";
-                default :
+                default:
                     return string.Empty;
             }
+        }
+
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod]
+        public static string[] GetPlayerNames(string prefixText, int count)
+        {
+            List<Player> players = DataAccess.GetPlayers();
+            if (players == null || players.Count == 0) return null;
+
+            return players.Where(p => p.FirstName.ToLower().Contains(prefixText.ToLower()) ||
+                    p.LastName.ToLower().Contains(prefixText.ToLower()))
+                .OrderBy(p => p.LastName).ThenBy(p => p.FirstName).Take(count)
+                .Select(p => PlayerHelper.GetPlayerName(p)).ToArray();
         }
     }
 }

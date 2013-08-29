@@ -5,5 +5,9 @@
     </siteMapNode>
     <siteMapNode url="~/Default.aspx" title="Ranking graczy"  description="">
     </siteMapNode>
+    <siteMapNode url="~/LastGames.aspx" title="Ostatnie mecze"  description="">
+    </siteMapNode>
+    <siteMapNode url="~/Help.aspx" title="Pomoc"  description="">
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

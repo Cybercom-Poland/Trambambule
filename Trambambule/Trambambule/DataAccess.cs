@@ -24,5 +24,10 @@ namespace Trambambule
         {
             return GetPlayers().FirstOrDefault(p => p.FirstName + " " + p.LastName == fullName);
         }
+
+        public static Player GetPlayer(int id)
+        {
+            return GetPlayers().FirstOrDefault(p => p.Id == id);
+        }
     }
 }

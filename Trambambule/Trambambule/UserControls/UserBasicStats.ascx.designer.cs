@@ -13,15 +13,6 @@ namespace Trambambule.UserControls {
     public partial class UserBasicStats {
         
         /// <summary>
-        /// upanUserStats control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upanUserStats;
-        
-        /// <summary>
         /// pnlUserStats control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,31 @@ namespace Trambambule.UserControls {
         protected global::System.Web.UI.WebControls.Panel pnlUserStats;
         
         /// <summary>
-        /// ddlPlayers control.
+        /// tbxPlayers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlayers;
+        protected global::System.Web.UI.WebControls.TextBox tbxPlayers;
+        
+        /// <summary>
+        /// AutoCompleteExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        
+        /// <summary>
+        /// TextBoxWatermarkExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender TextBoxWatermarkExtender1;
         
         /// <summary>
         /// lblStatsDetails control.
