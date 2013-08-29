@@ -54,6 +54,8 @@
             Warto zaznaczyć, że jeśli dwóch graczy o wysokim rankingu będzie grało z dwoma o bardzo niskim, ich wygrana może przynieść im spadek punktów rankingowych, jeśli nie wygrają do zera. Nawet jedna stracona bramka może oznaczać, że nie są aż tak dobrzy, jakby wskazywał na to ich aktualny ranking.<br>
             Z tego powodu najlepiej grać w parach, których sumy rankingów są zbliżone.</p>
 
+            <p>Więcej szczegółów można znaleźć na <a href="http://www.glicko.net/glicko.html">stronie Marka Glickmana</a>, a w szczególności w jego <a href="http://www.glicko.net/glicko/glicko.pdf">opisie rankingu Glicko</a>.</p>
+
         <center>
             W razie pytań odnośnie działania aplikacji, sugestii, etc. proszę kontaktować się z Mariuszem Milewskim.
             <br />
