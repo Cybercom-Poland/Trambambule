@@ -72,12 +72,41 @@ namespace Trambambule.UserControls
                 {
                     TeamMatchPlayer playerData = lastGames.First().TeamMatchPlayers.First(p => p.PlayerId == player.Id);
                     sb.AppendLine("Pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
-                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue 
-                        ? ((int)playerData.Rating.Value).ToString() : string.Empty));
+                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue
+                        ? ((int)playerData.Rating.Value).ToString() : string.Empty));                    
                     string form = string.Empty;
                     foreach(TeamMatch tm in lastGames)
                         form += GetMatchResultLabel(tm);
                     sb.AppendLine("Forma: " + form);
+                    sb.Append("<hr/>");
+
+                    var partnerGames = playerMatches
+                        .GroupBy(p => new { Partner = p.TeamMatchPlayers.First(x => x.PlayerId != playerData.PlayerId) })
+                        .Select(x => new
+                        {
+                            Partner = x.Key.Partner.Player,
+                            Name = PlayerHelper.GetPlayerName(x.Key.Partner.Player),
+                            Games = x.Count(),
+                            Won = x.Count(z => z.Result == (byte)Common.EResult.Win),
+                            Drawn = x.Count(z => z.Result == (byte)Common.EResult.Draw),
+                            Lost = x.Count(z => z.Result == (byte)Common.EResult.Loose),
+                            AvgGoalsScored = x.Average(z => z.GoalsScored),
+                            AvgGoalsLost = x.Average(z => z.GoalsLost)
+                        });
+                    sb.AppendLine("Najczęstrzy partner: " +
+                        partnerGames.OrderByDescending(p => p.Games).First().Name);
+                    sb.AppendLine("Najwięcej W z: " +
+                        partnerGames.OrderByDescending(p => p.Won).First().Name);
+                    sb.AppendLine("Najwięcej P z: " +
+                        partnerGames.OrderByDescending(p => p.Lost).First().Name);
+                    sb.AppendLine("Najwięcej G+/m z: " +
+                        partnerGames.OrderByDescending(p => p.AvgGoalsScored).First().Name);
+                    sb.AppendLine("Najmniej G+/m z: " +
+                        partnerGames.OrderBy(p => p.AvgGoalsScored).First().Name);
+                    sb.AppendLine("Najwięcej G-/m z: " +
+                        partnerGames.OrderByDescending(p => p.AvgGoalsLost).First().Name);
+                    sb.AppendLine("Najmniej G-/m z: " +
+                        partnerGames.OrderBy(p => p.AvgGoalsLost).First().Name);
                     sb.Append("<hr/>");
                 }
 
