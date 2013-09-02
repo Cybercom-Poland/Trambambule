@@ -18,4 +18,12 @@
         <div class="content">
             <asp:Label ID="lblStatsDetails" runat="server"></asp:Label>
         </div>
+
+        <asp:LineChart ID="lcRanking" runat="server" 
+            ChartWidth="249" ChartHeight="200" ChartType="Basic" 
+            ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" 
+            ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB"
+            CssClass="lineChart" BorderStyle="None">
+            
+        </asp:LineChart>
     </asp:Panel>

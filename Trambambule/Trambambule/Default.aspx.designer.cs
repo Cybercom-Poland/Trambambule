@@ -22,6 +22,15 @@ namespace Trambambule {
         protected global::System.Web.UI.WebControls.GridView gvPlayerResults;
         
         /// <summary>
+        /// rblLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblLocation;
+        
+        /// <summary>
         /// sqldsResults control.
         /// </summary>
         /// <remarks>

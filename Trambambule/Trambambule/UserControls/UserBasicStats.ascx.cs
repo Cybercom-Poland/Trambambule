@@ -24,6 +24,7 @@ namespace Trambambule.UserControls
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             BindPlayerStats();
+            BindPlayerRankChart();
         }
 
         protected void tbxPlayers_TextChanged(object sender, EventArgs e)
@@ -31,6 +32,28 @@ namespace Trambambule.UserControls
             Player player = DataAccess.GetPlayer(tbxPlayers.Text);
             if (player == null) tbxPlayers.Text = string.Empty;
             else Session["UserBasicStatsPlayer"] = player;
+        }
+
+        private void BindPlayerRankChart()
+        {
+            lcRanking.Series.Clear();
+            lcRanking.Visible = false;
+            Player player = ((Player)Session["UserBasicStatsPlayer"]);
+            if (player == null) return;
+            using (TrambambuleDBContextDataContext context = new TrambambuleDBContextDataContext())
+            {
+                List<TeamMatchPlayer> hist = context.TeamMatchPlayers.Where(p => p.PlayerId == player.Id)
+                    .OrderByDescending(p => p.Timestamp).Take(10).OrderBy(p => p.Timestamp).ToList();
+                if (!hist.Any() || hist.Count < 2) return;
+                lcRanking.CategoriesAxis = string.Join(",", hist.Select(p => p.Timestamp.ToString("dd-MM-yyyy HH:mm:ss")).ToArray());
+                AjaxControlToolkit.LineChartSeries lcs = new AjaxControlToolkit.LineChartSeries();
+                lcs.Data = hist.Select(p => (decimal)((int)
+                    (p.Rating.Value - hist.Last().Rating.Value)
+                    )).ToArray();
+                lcs.Name = "Zmiany pkt. rankingowych";
+                lcRanking.Series.Add(lcs);
+                lcRanking.Visible = true;
+            }
         }
 
         private void BindPlayerStats()
@@ -49,7 +72,8 @@ namespace Trambambule.UserControls
                 {
                     TeamMatchPlayer playerData = lastGames.First().TeamMatchPlayers.First(p => p.PlayerId == player.Id);
                     sb.AppendLine("Pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
-                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue ? playerData.Rating.Value.ToString("n0") : string.Empty));
+                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue 
+                        ? ((int)playerData.Rating.Value).ToString() : string.Empty));
                     string form = string.Empty;
                     foreach(TeamMatch tm in lastGames)
                         form += GetMatchResultLabel(tm);
@@ -57,24 +81,29 @@ namespace Trambambule.UserControls
                     sb.Append("<hr/>");
                 }
 
-                sb.AppendLine("Rozegranych: " + playerMatches.Select(p => new { Mid = p.MatchId }).Distinct().Count());
-                sb.AppendLine("Wygranych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Win));
-                sb.AppendLine("Przegranych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Loose));
-                sb.AppendLine("Zremisowanych: " + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Draw));
-                sb.AppendLine("Goli strzelonych: " + playerMatches.Select(p => new { Mid = p.MatchId, GoalsScored = p.GoalsScored }).Distinct().Sum(p => p.GoalsScored));
-                sb.AppendLine("Goli straconych: " + playerMatches.Select(p => new { Mid = p.MatchId, GoalsLost = p.GoalsLost }).Distinct().Sum(p => p.GoalsLost));
+                //sb.AppendLine("Rozegranych: " + playerMatches.Select(p => new { Mid = p.MatchId }).Distinct().Count());
+                sb.AppendLine("Bilans W/R/P: "
+                    + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Win) + "/"
+                    + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Draw) + "/"
+                    + playerMatches.Select(p => new { Mid = p.MatchId, Result = p.Result }).Distinct().Count(p => p.Result == (int)Common.EResult.Loose));
+                sb.AppendLine("Bilans bramek: " 
+                    + playerMatches.Select(p => new { Mid = p.MatchId, GoalsScored = p.GoalsScored }).Distinct().Sum(p => p.GoalsScored)
+                    + "/"
+                    + playerMatches.Select(p => new { Mid = p.MatchId, GoalsLost = p.GoalsLost }).Distinct().Sum(p => p.GoalsLost));
 
                 sb.Append("<hr/>");
 
-                sb.AppendLine("Wygranych [atak]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Win
+                sb.AppendLine("Bilans W/R/P [atak]: "
+                    + playerMatches.Count(p => p.Result == (int)Common.EResult.Win
+                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence) + "/"
+                    + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw
+                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence) + "/"
+                    + playerMatches.Count(p => p.Result == (int)Common.EResult.Loose
                     && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence));
-                sb.AppendLine("Przegranych [atak]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Loose
-                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence));
-                sb.AppendLine("Zremisowanych [atak]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw
-                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence));
-                sb.AppendLine("Goli strzelonych [atak]: " + playerMatches.Where(p =>
-                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsScored));
-                sb.AppendLine("Goli straconych [atak]: " + playerMatches.Where(p =>
+                sb.AppendLine("Bilans bramek [atak]: " 
+                    + playerMatches.Where(p =>
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsScored)
+                    + "/" + playerMatches.Where(p =>
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Offence).Sum(p => p.GoalsLost));
                 try
                 {
@@ -87,15 +116,16 @@ namespace Trambambule.UserControls
                 
                 sb.Append("<hr/>");
 
-                sb.AppendLine("Wygranych [obrona]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Win
+                sb.AppendLine("Bilans W/R/P [obrona]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Win
+                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence) + "/"
+                    + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw
+                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence) + "/"
+                    + playerMatches.Count(p => p.Result == (int)Common.EResult.Loose
                     && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence));
-                sb.AppendLine("Przegranych [obrona]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Loose
-                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence));
-                sb.AppendLine("Zremisowanych [obrona]: " + playerMatches.Count(p => p.Result == (int)Common.EResult.Draw
-                    && p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence));
-                sb.AppendLine("Goli strzelonych [obrona]: " + playerMatches.Where(p =>
-                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsScored));
-                sb.AppendLine("Goli straconych [obrona]: " + playerMatches.Where(p =>
+                sb.AppendLine("Bilans bramek [obrona]: "
+                    + playerMatches.Where(p =>
+                    p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsScored)
+                    + "/" + playerMatches.Where(p =>
                     p.TeamMatchPlayers.First(x => x.PlayerId == player.Id).Position == (byte)Common.EPosition.Defence).Sum(p => p.GoalsLost));
                 try
                 {

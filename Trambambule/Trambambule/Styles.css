@@ -295,3 +295,29 @@ h1
     background-color: #EEEEEE;
     font-weight: bold;
 }
+
+.forkMe {
+	margin: 0;
+	border: 0;
+	background: transparent;
+	border: 0 none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 150px;
+}
+.forkMe img {
+	height: 150px;
+}
+
+.lineChart #LegendText     
+{
+    
+}
+.lineChart #SeriesAxis {
+	display: none;
+}
+.lineChart #ChartTitle 
+{
+    font-size: 11px;
+}

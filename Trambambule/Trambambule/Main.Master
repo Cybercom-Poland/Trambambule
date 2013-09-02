@@ -19,6 +19,8 @@
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
     
+    <asp:HyperLink runat="server" CssClass="forkMe" ImageUrl="~/Assets/forkme.png" NavigateUrl="https://github.com/Cybercom-Poland/Trambambule" Height="100" Target="_blank"></asp:HyperLink>
+
     <div class="MainPanel">
         <div class="HeaderPanel">
             <uc:Header id="ucHeader" runat="server"></uc:Header>

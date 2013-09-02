@@ -60,6 +60,7 @@
   <ItemGroup>
     <Content Include="Assets\cybercom_logo.png" />
     <Content Include="Assets\exchange.png" />
+    <Content Include="Assets\forkme.png" />
     <Content Include="Default.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="LastGames.aspx" />
