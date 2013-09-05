@@ -9,5 +9,7 @@
     </siteMapNode>
     <siteMapNode url="~/Help.aspx" title="Pomoc"  description="">
     </siteMapNode>
+    <siteMapNode url="~/UserStats.aspx" title="Statystyki gracza"  description="">
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

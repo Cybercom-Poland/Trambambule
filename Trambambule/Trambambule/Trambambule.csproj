@@ -69,6 +69,7 @@
     <Content Include="UserControls\Header.ascx" />
     <Content Include="UserControls\Menu.ascx" />
     <Content Include="UserControls\UserBasicStats.ascx" />
+    <Content Include="UserStats.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="UserControls\UserBasicStats.ascx.designer.cs">
       <DependentUpon>UserBasicStats.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserStats.aspx.cs">
+      <DependentUpon>UserStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserStats.aspx.designer.cs">
+      <DependentUpon>UserStats.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

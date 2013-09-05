@@ -14,37 +14,37 @@
         <elementListCompartment Id="30057ec0-c978-47fd-8040-681fe3d3e440" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" absoluteBounds="6.25, 0.875, 2, 1.9631982421874998">
-      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatchPlayer" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a3fad22e-fec4-4c49-8f81-3954bb3650df" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.85659912109375); (7.25 : 4.85659912109375); (7.25 : 2.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Player/Player_TeamMatchPlayer" />
-      <nodes>
-        <classShapeMoniker Id="157601d9-58f5-4226-8233-421251d6be61" />
-        <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
-      </nodes>
-    </associationConnector>
     <classShape Id="37394be1-e308-4a50-91a8-ea70143dc039" absoluteBounds="3.625, 1.375, 2, 1.9631982421875">
       <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatch" />
       <nestedChildShapes>
         <elementListCompartment Id="9dadc6ac-5f05-40e9-a687-0f868e35f3d1" absoluteBounds="3.64, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.625 : 2.10659912109375); (6.25 : 2.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrambambuleDBContextDataContext/TeamMatch/TeamMatch_TeamMatchPlayer" />
-      <nodes>
-        <classShapeMoniker Id="37394be1-e308-4a50-91a8-ea70143dc039" />
-        <classShapeMoniker Id="14eed8e0-2c6e-4903-b4a5-3ee0dd84b8f6" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.90949625651042); (3.625 : 1.90949625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 1.90949625651042); (3.625 : 1.90949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TrambambuleDBContextDataContext/Match/Match_TeamMatch" />
       <nodes>
         <classShapeMoniker Id="9d50a2cb-0a81-487a-b9a6-0a26bedefa08" />
         <classShapeMoniker Id="37394be1-e308-4a50-91a8-ea70143dc039" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f6c6b778-1cd7-49f4-9246-203ba541204d" absoluteBounds="6.625, 2.25, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TrambambuleDBContextDataContext/TeamMatchPlayer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="253fe0f1-ed90-457a-a6ee-7e5c378881c8" absoluteBounds="6.64, 2.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.23640055338542); (6.625 : 4.23640055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/Player/Player_TeamMatchPlayer" />
+      <nodes>
+        <classShapeMoniker Id="157601d9-58f5-4226-8233-421251d6be61" />
+        <classShapeMoniker Id="f6c6b778-1cd7-49f4-9246-203ba541204d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 2.79409912109375); (6.625 : 2.79409912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TrambambuleDBContextDataContext/TeamMatch/TeamMatch_TeamMatchPlayer" />
+      <nodes>
+        <classShapeMoniker Id="37394be1-e308-4a50-91a8-ea70143dc039" />
+        <classShapeMoniker Id="f6c6b778-1cd7-49f4-9246-203ba541204d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

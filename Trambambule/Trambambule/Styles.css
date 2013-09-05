@@ -48,7 +48,6 @@ h1
     margin: 0;
     padding: 5px 15px;
     text-align: left;
-    text-transform: capitalize;
     height: 20px;
     border: 1px solid #ccc;
 }
@@ -320,4 +319,15 @@ h1
 .lineChart #ChartTitle 
 {
     font-size: 11px;
+}
+
+.FloatingBox {
+    border: 1px solid #CCCCCC;
+    float: left;
+    margin: 5px 0 5px 5px;
+    width: 365px;
+}
+.FloatingBox .FloatingBoxContent {
+    line-height: 20px;
+    padding: 10px;
 }

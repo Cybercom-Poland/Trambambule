@@ -7,54 +7,72 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trambambule.UserControls {
+namespace Trambambule {
     
     
-    public partial class Header {
+    public partial class UserStats {
         
         /// <summary>
-        /// hlSendResult control.
+        /// pnlPartnerStats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSendResult;
+        protected global::System.Web.UI.WebControls.Panel pnlPartnerStats;
         
         /// <summary>
-        /// hlResults control.
+        /// pnlRanking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlResults;
+        protected global::System.Web.UI.WebControls.Panel pnlRanking;
         
         /// <summary>
-        /// HyperLink1 control.
+        /// pnlGoals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Panel pnlGoals;
         
         /// <summary>
-        /// HyperLink3 control.
+        /// pnlRivals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.Panel pnlRivals;
         
         /// <summary>
-        /// HyperLink2 control.
+        /// pnlGraphs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.WebControls.Panel pnlGraphs;
+        
+        /// <summary>
+        /// lcRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.LineChart lcRating;
+        
+        /// <summary>
+        /// lcRanking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.LineChart lcRanking;
     }
 }

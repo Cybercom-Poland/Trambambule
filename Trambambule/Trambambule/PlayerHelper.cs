@@ -23,6 +23,18 @@ namespace Trambambule
             return player.FirstName + " " + player.LastName;
         }
 
+        public static string GetPlayerNameLink(Player player)
+        {
+            string link = HttpContext.Current.Request.Url.AbsoluteUri.IndexOf('?') < 0
+                ? HttpContext.Current.Request.Url.AbsoluteUri
+                : HttpContext.Current.Request.Url.AbsoluteUri
+                    .Remove(HttpContext.Current.Request.Url.AbsoluteUri.IndexOf("?"));
+            return string.Format("<a href='{0}?userId={1}'>{2}</a>",
+                link,
+                player.Id,
+                GetPlayerName(player));
+        }
+
         public static bool FillPlayersRating(
             ref TeamMatchPlayer playerA1MatchData,
             ref TeamMatchPlayer playerA2MatchData,
