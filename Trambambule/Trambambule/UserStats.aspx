@@ -41,5 +41,13 @@
             </asp:Panel>
         </div>
     </div>
+    <div style="clear:both; margin: 5px;">
+        <h1>Zestawienie statystyk z partnerami</h1>
+        <asp:GridView ID="gvPartners" runat="server" CssClass="Table" OnRowDataBound="gvStats_RowDataBound"></asp:GridView>
+    </div>
+    <div style="clear:both; margin: 5px;">
+        <h1>Zestawienie statystyk z rywalami</h1>
+        <asp:GridView ID="gvRivals" runat="server" CssClass="Table" OnRowDataBound="gvStats_RowDataBound"></asp:GridView>
+    </div>
 
 </asp:Content>

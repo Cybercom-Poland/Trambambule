@@ -173,7 +173,7 @@ namespace Trambambule
                         .GroupBy(p => new { Partner = p.TeamMatchPlayers.First(x => x.PlayerId != playerData.PlayerId).Player })
                         .Select(x => new
                         {
-                            Partner = x.Key.Partner,
+                            //Partner = x.Key.Partner,
                             Name = PlayerHelper.GetPlayerNameLink(x.Key.Partner),
                             Games = x.Count(),
                             Won = x.Count(z => z.Result == (byte)Common.EResult.Win),
@@ -185,7 +185,10 @@ namespace Trambambule
                                 / (x.Count() == 0 ? 1 : x.Count()),
                             AvgGoalsScored = x.Average(z => z.GoalsScored),
                             AvgGoalsLost = x.Average(z => z.GoalsLost)
-                        });
+                        })
+                        .OrderByDescending(p => p.AvgAggregatePerc);
+                    gvPartners.DataSource = partnerGames;
+                    gvPartners.DataBind();
                     sb.AppendLine(string.Format("Najczęstrzy partner: {0} ({1})",
                         partnerGames.OrderByDescending(p => p.Games).First().Name,
                         partnerGames.OrderByDescending(p => p.Games).First().Games));
@@ -247,7 +250,7 @@ namespace Trambambule
                         .GroupBy(p => new { Partner = p.Player })
                         .Select(x => new
                         {
-                            Partner = x.Key.Partner,
+                            //Partner = x.Key.Partner,
                             Name = PlayerHelper.GetPlayerNameLink(x.Key.Partner),
                             Games = x.Count(),
                             Won = x.Count(z => z.TeamMatch.Result == (byte)Common.EResult.Win),
@@ -259,7 +262,10 @@ namespace Trambambule
                                 / (x.Count() == 0 ? 1 : x.Count()),
                             AvgGoalsScored = x.Average(z => z.TeamMatch.GoalsScored),
                             AvgGoalsLost = x.Average(z => z.TeamMatch.GoalsLost)
-                        });
+                        })
+                        .OrderByDescending(p => p.AvgAggregatePerc);
+                    gvRivals.DataSource = rivalGames;
+                    gvRivals.DataBind();
                     sb.AppendLine(string.Format("Najczęstrzy rywal: {0} ({1})",
                         rivalGames.OrderByDescending(p => p.Games).First().Name,
                         rivalGames.OrderByDescending(p => p.Games).First().Games));
@@ -312,6 +318,43 @@ namespace Trambambule
                     return "<span style='color: green;'>Z </span>";
                 default:
                     return string.Empty;
+            }
+        }
+
+        protected void gvStats_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                try
+                {
+                    e.Row.Cells[0].Text = HttpUtility.HtmlDecode(e.Row.Cells[0].Text);
+                    e.Row.Cells[6].Text += "%";
+                    e.Row.Cells[7].Text = decimal.Parse(e.Row.Cells[7].Text).ToString("n2");
+                    e.Row.Cells[8].Text = decimal.Parse(e.Row.Cells[8].Text).ToString("n2");
+                }
+                catch { }
+            }
+            else if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Text = "Gracz";
+                e.Row.Cells[1].Text = "Gier";
+                e.Row.Cells[2].Text = "W";
+                e.Row.Cells[3].Text = "R";
+                e.Row.Cells[4].Text = "P";
+                e.Row.Cells[5].Text = "Bilans";
+                e.Row.Cells[6].Text = "Śr. W";
+                e.Row.Cells[7].Text = "Śr. br. zd";
+                e.Row.Cells[8].Text = "Śr. br. st";
+
+                e.Row.Cells[0].ToolTip = "Gracz";
+                e.Row.Cells[1].ToolTip = "Gier";
+                e.Row.Cells[2].ToolTip = "Ilość wygranych meczy";
+                e.Row.Cells[3].ToolTip = "Ilość zremisowanych meczy";
+                e.Row.Cells[4].ToolTip = "Ilość przegranych meczy";
+                e.Row.Cells[5].ToolTip = "Bilans wygranych i przegranych";
+                e.Row.Cells[6].ToolTip = "Średnia wygranych meczy w %";
+                e.Row.Cells[7].ToolTip = "Średnia bramek zdobytych w meczu";
+                e.Row.Cells[8].ToolTip = "Średnia bramek straconych w meczu";
             }
         }
     }
