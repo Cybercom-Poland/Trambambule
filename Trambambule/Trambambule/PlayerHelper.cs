@@ -91,7 +91,7 @@ namespace Trambambule
             int ourGoals, int oppGoals)
         {
             // MAGIC goes here: http://www.glicko.net/glicko/glicko.pdf
-            double result = CalculateResult(ourGoals, oppGoals);
+            double result = SinusoidifyResult(CalculateResult(ourGoals, oppGoals));
             double oppRating = SanitizeRating((double) (firstOppMatchData.Rating + secondOppMatchData.Rating - allyMatchData.Rating));
             double oppRD = (double) (firstOppMatchData.RD + secondOppMatchData.RD + allyMatchData.RD) / 3;
             double oppRatingStability = 1 / Math.Sqrt(1 + 3 * MAGIC_Q_CONSTANT_SQUARED * oppRD * oppRD / PI_SQUARED);
@@ -131,6 +131,11 @@ namespace Trambambule
             {
                 return ((double)ourGoals) / (ourGoals + oppGoals);
             }
+        }
+
+        private static double SinusoidifyResult(double result)
+        {
+            return 0.5 * (1 + Math.Sin((result-0.5) * Math.PI));
         }
 
         public static double CalculateCurrentRD(TeamMatchPlayer lastMatchData, DateTime currentTimestamp)
