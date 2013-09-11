@@ -23,11 +23,17 @@ namespace Trambambule
         protected void gvPlayerResults_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
-            if (e.Row.RowType == DataControlRowType.DataRow && Session["UserBasicStatsPlayer"] != null)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Player player = (Player)Session["UserBasicStatsPlayer"];
-                if (e.Row.Cells[0].Text == player.Id.ToString())
-                    e.Row.Font.Bold = true;
+                Player p = DataAccess.GetPlayer(Server.HtmlDecode(e.Row.Cells[2].Text));
+                if(p != null)
+                    e.Row.Cells[2].Text = Server.HtmlDecode(PlayerHelper.GetPlayerNameLink(p));
+                if(Session["UserBasicStatsPlayer"] != null)
+                {
+                    Player player = (Player)Session["UserBasicStatsPlayer"];
+                    if (e.Row.Cells[0].Text == player.Id.ToString())
+                        e.Row.Font.Bold = true;
+                }
             }
         }
     }
