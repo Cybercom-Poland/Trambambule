@@ -61,7 +61,7 @@ namespace Trambambule
                 lcRanking.CategoriesAxis = string.Join(",", hist.Select(p => p.Timestamp.ToString("dd-MM-yyyy HH:mm:ss")).ToArray());
                 AjaxControlToolkit.LineChartSeries lcs = new AjaxControlToolkit.LineChartSeries();
                 lcs.Data = hist.Where(p => p.RankPosition.HasValue).Select(p => (decimal)p.RankPosition.Value).ToArray();
-                lcs.Name = "Historia zmian pozycji w rankingu";
+                lcs.Name = "Historia pozycji rankingowej";
                 lcRanking.Series.Add(lcs);
                 lcRanking.Visible = true;
             }
@@ -80,6 +80,8 @@ namespace Trambambule
                 if (playerMatches.Any())
                 {
                     StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Obecna pozycja w rankingu: "
+                        + playerMatches.First().RankPosition);
                     sb.AppendLine("Najwyższa pozycja w rankingu: "
                         + playerMatches.Min(p => p.RankPosition));
                     sb.AppendLine("Najniższa pozycja w rankingu: "
@@ -132,7 +134,6 @@ namespace Trambambule
                 }
                 catch { }
 
-                sb.Append("<hr/>");
 
                 sb.AppendLine("Bilans bramek [obrona]: "
                     + playerMatches.Where(p =>

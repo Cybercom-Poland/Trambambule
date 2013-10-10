@@ -13,13 +13,13 @@ namespace Trambambule {
     public partial class Default {
         
         /// <summary>
-        /// gvPlayerResults control.
+        /// cbxStableRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlayerResults;
+        protected global::System.Web.UI.WebControls.CheckBox cbxStableRank;
         
         /// <summary>
         /// rblLocation control.
@@ -29,6 +29,15 @@ namespace Trambambule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblLocation;
+        
+        /// <summary>
+        /// gvPlayerResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPlayerResults;
         
         /// <summary>
         /// sqldsResults control.

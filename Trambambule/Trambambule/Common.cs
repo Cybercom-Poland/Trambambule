@@ -20,11 +20,33 @@ namespace Trambambule
             Defence = 0
         }
 
-        public static Common.EResult GetResult(int g1, int g2)
+        public static EResult GetResult(int goals1, int goals2)
         {
-            if (g1 > g2) return Common.EResult.Win;
-            if (g1 < g2) return Common.EResult.Loose;
+            if (goals1 > goals2) return Common.EResult.Win;
+            if (goals1 < goals2) return Common.EResult.Loose;
             return Common.EResult.Draw;
         } 
+
+        public static bool CompareNames(Player p, string prefix)
+        {
+            return CreateTextCompareString(p.FirstName + p.LastName)
+                .Contains(CreateTextCompareString(prefix));
+        }
+
+        public static string CreateTextCompareString(string text)
+        {
+            text = text.ToLower()
+                .Replace("ą", "a")
+                .Replace("ę", "e")
+                .Replace("ó", "o")
+                .Replace("ł", "l")
+                .Replace("ś", "s")
+                .Replace("ć", "c")
+                .Replace("ż", "z")
+                .Replace("ź", "z")
+                .Replace("ń", "n")
+                .Replace(" ", "");
+            return text;
+        }
     }
 }

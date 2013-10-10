@@ -48,7 +48,7 @@ namespace Trambambule.UserControls
                 lcRanking.CategoriesAxis = string.Join(",", hist.Select(p => p.Timestamp.ToString("dd-MM-yyyy HH:mm:ss")).ToArray());
                 AjaxControlToolkit.LineChartSeries lcs = new AjaxControlToolkit.LineChartSeries();
                 lcs.Data = hist.Where(p => p.RankPosition.HasValue).Select(p => (decimal)p.RankPosition.Value).ToArray();
-                lcs.Name = "Zmiany pozycji w rankingu";
+                lcs.Name = "Historia pozycji rankingowej";
                 lcRanking.Series.Add(lcs);
                 lcRanking.Visible = true;
             }
@@ -69,8 +69,8 @@ namespace Trambambule.UserControls
                 if(lastGames.Any())
                 {
                     TeamMatchPlayer playerData = lastGames.First().TeamMatchPlayers.First(p => p.PlayerId == player.Id);
-                    sb.AppendLine("Pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
-                    sb.AppendLine("Punktów rankingowych: " + (playerData.Rating.HasValue
+                    sb.AppendLine("Obecna pozycja w rankingu: " + context.GetPlayerRankPosition(player.Id));
+                    sb.AppendLine("Punkty rankingowe: " + (playerData.Rating.HasValue
                         ? ((int)playerData.Rating.Value).ToString() : string.Empty));                    
                     string form = string.Empty;
                     foreach (TeamMatch tm in lastGames.Take(15).ToList())
@@ -124,19 +124,6 @@ namespace Trambambule.UserControls
                 default:
                     return string.Empty;
             }
-        }
-
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod]
-        public static string[] GetPlayerNames(string prefixText, int count)
-        {
-            List<Player> players = DataAccess.GetPlayers();
-            if (players == null || players.Count == 0) return null;
-
-            return players.Where(p => p.FirstName.ToLower().Contains(prefixText.ToLower()) ||
-                    p.LastName.ToLower().Contains(prefixText.ToLower()))
-                .OrderBy(p => p.LastName).ThenBy(p => p.FirstName).Take(count)
-                .Select(p => PlayerHelper.GetPlayerName(p)).ToArray();
         }
     }
 }

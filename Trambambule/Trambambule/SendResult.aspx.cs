@@ -136,8 +136,7 @@ namespace Trambambule
             List<Player> players = DataAccess.GetPlayers();
             if (players == null || players.Count == 0) return null;
 
-            return players.Where(p => p.FirstName.ToLower().Contains(prefixText.ToLower()) ||
-                    p.LastName.ToLower().Contains(prefixText.ToLower()))
+            return players.Where(p => Common.CompareNames(p, prefixText))
                 .OrderBy(p => p.LastName).ThenBy(p => p.FirstName).Take(count)
                 .Select(p => PlayerHelper.GetPlayerName(p)).ToArray();
         }
