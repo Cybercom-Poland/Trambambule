@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Trambambule.Achievements;
 
 namespace Trambambule
 {
     public class DataAccess
     {
+
         public static List<Player> GetPlayers()
         {
             if (HttpContext.Current.Cache["Players"] == null)
                 using (TrambambuleDBContextDataContext context = new TrambambuleDBContextDataContext())
                 {
+                    var players = context.Players.ToList();
+                    new AchievementService(players, context).Recalculate();
+
                     HttpContext.Current.Cache.Add(
-                        "Players", context.Players.ToList(),
+                        "Players", players,
                         null, System.Web.Caching.Cache.NoAbsoluteExpiration,
                         new TimeSpan(1, 0, 0), System.Web.Caching.CacheItemPriority.Normal, null);
                 }
