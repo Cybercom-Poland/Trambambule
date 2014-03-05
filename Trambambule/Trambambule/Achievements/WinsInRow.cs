@@ -35,8 +35,8 @@ namespace Trambambule.Achievements
                                             x.TeamMatchPlayers.Any(z => z.PlayerId == player.Id)))
                                             .OrderByDescending(p => p.Timestamp).Take(top).OrderByDescending(w => w.Timestamp).ToList();
 
-                if (playerMatches.Count == top)
-                {
+                //if (playerMatches.Count == top)
+                //{
                     List<TeamMatch> tmList = new List<TeamMatch>();
                     foreach (Match pm in playerMatches)
                     {
@@ -61,19 +61,24 @@ namespace Trambambule.Achievements
                         if (!result)
                             break;
                     }
-                }
-                else
-                {
-                    int t = top - playerMatches.Count;
-                    comment = "Brakuje " + t + " " + GramaticHelper(t) + " z rzędu do kolejnego poziomu";
-                    return false;
-                }
+                //}
+                //else
+                //{
+                //    int t = top - playerMatches.Count;
+                //    comment = "Brakuje " + t + " " + GramaticHelper(t) + " z rzędu do kolejnego poziomu";
+                //    return false;
+                //}
 
 
                 if (comment == "")
                 {
                     if (level < 3)
-                        comment = "Brakuje " + nextStep + " " + GramaticHelper(nextStep) + " z rzędu do kolejnego poziomu";
+                    {
+                        if (i > 0)
+                            comment = "Brakuje " + (nextStep - i) + " " + GramaticHelper(nextStep - i) + " z rzędu do kolejnego poziomu";
+                        else
+                            comment = "Brakuje " + nextStep + " " + GramaticHelper(nextStep) + " z rzędu do kolejnego poziomu";
+                    }
                     else
                         comment = "Zdobyto najwyższy poziom w tym osiągnięciu";
                 }
