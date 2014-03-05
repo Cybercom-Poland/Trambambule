@@ -37,6 +37,37 @@ input[type=submit]:hover
 {
     background-color: #9E9E9E;
 }
+
+
+.btn
+{
+    background-color: #777777;
+    font-weight: bold;
+    color: White;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 5px 10px;   
+    border: 0px solid;
+    cursor: pointer;
+    height:32px;
+    width:28px;
+}
+.btn:hover
+{
+    background-color: #9E9E9E;
+}
+.btn:disabled
+{
+    color:Gray;
+    cursor:default;
+}
+.btn:disabled:hover
+{
+    background-color: #777777;
+}
+
+
+
 a {
 	color: inherit;
 }
@@ -78,7 +109,7 @@ h1
 }
 .HeaderPanel .menu
 {
-    padding: 30px 0 0 80px;
+    padding-top:30px;
 }
 .HeaderPanel .menu ul
 {
@@ -89,26 +120,24 @@ h1
 {
     display: inline;
     float: left;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;   
+    padding:0 5px 0 5px;
+    border-right: solid 1px #CCCCCC;
 }
-.HeaderPanel .menu ul li.separator
-{
-    background-color: #CCCCCC;
-    height: 25px;
-    margin: -3px 5px 0;
-    width: 1px;
-}
+.HeaderPanel .menu ul li.last {border:none;}
+
 .HeaderPanel .menu ul li.link
 {}
 .HeaderPanel .menu ul li.link:hover
 {}
 .HeaderPanel .menu ul li a
 {
-    padding: 5px 10px;
+    padding: 5px;
     color: inherit;
     text-decoration: none; 
     cursor: pointer;
+    display:block;
 }
 .HeaderPanel .menu ul li a:hover
 {
@@ -117,8 +146,8 @@ h1
 .HeaderPanel .AppName
 {
     float: right;
-    font-size: 2.5em;
-    margin: -10px 25px 0 0;  
+    font-size: 2.5em;   
+    margin: -10px 20px 0 0;  
 }
 
 .Footer
@@ -155,7 +184,7 @@ h1
 .SideBarPanel select.TopSelector
 {
     background: none repeat scroll 0 0 #FDFDFD;
-    border: 1px solid #CCCCCC;
+    /*border: 1px solid #CCCCCC;*/
     margin: 0 0 0 -1px;
     padding: 5px;
     position: absolute;
@@ -164,11 +193,13 @@ h1
 }
 .SideBarPanel input.TopSelector {
     background: none repeat scroll 0 0 #FDFDFD;
-    border-width: 1px 0;
+    /*border-width: 1px 0;*/
     height: 30px;
     margin: 0;
-    padding: 0 10px;
-    width: 229px;
+    padding: 0 0 0 10px;
+    width: 209px;
+    border:0;
+
 }
 .SideBarPanel .content
 {
@@ -212,7 +243,7 @@ h1
     color: Red;
     font-weight:bold;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
 }
 
 .Table
@@ -306,7 +337,7 @@ h1
 	height: 150px;
 }
 .forkMe img {
-	height: 150px;
+	height: 128px;
 }
 
 .lineChart #LegendText     
@@ -327,7 +358,72 @@ h1
     margin: 5px 0 5px 5px;
     width: 365px;
 }
+.FloatingBox.large{
+    width:737px;
+}
+
 .FloatingBox .FloatingBoxContent {
     line-height: 20px;
     padding: 10px;
 }
+
+.bold {font-weight:bold;}
+.withPadding {padding:3px;}
+.ratingtd {width:135px; height:40px;}
+
+.addNewPlayerPlayer
+{
+    background-color: #777777;
+    font-weight: bold;
+    color: White;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 0 5px 0;   
+    border: 0px solid;
+    cursor: pointer;
+    height:32px;    
+    display:block;
+    text-align:center;
+}
+.addNewPlayerPlayer:hover
+{
+    background-color: #9E9E9E;
+}
+#fields {width:300px; margin:0 auto;}
+#fields div {margin:10px 0 10px 0;}
+#fields div span {display:block; width:70px; float:left;padding-top:4px;}
+#fields div span.validator {float:right;display:block; width:2px;}
+#fields div input[type=text] {width:215px; }
+#fields div select {width:224px; height:25px;}
+#fields .btns {margin:15px 0 15px 0; text-align:center;}
+#fields .validator {color:Red;}
+.validator ul {padding:0; margin-top:0; margin-bottom:0;}
+.validator li {list-style:none;}
+
+.icon {padding:0 !important; border:0 !important;}
+.icon a { display:block; height:32px; border:none; width:32px; padding:0 !important;}
+.help {background: url('Assets/help_and_support.png') no-repeat center center; }
+.add {background: url('Assets/add_user.png') no-repeat center center; }
+.lvl {height:50px;}
+.lvl img {display:block; float:left; position:relative;top: -10px; margin-right:10px;}
+.left {float:left; width:40%;}
+.right { float:right; width:60%; top:27px; position:relative; margin-bottom:15px;}
+.center {text-align:center; padding:10px; text-align:center; display:block;}
+
+#loader {position: absolute; text-align: center; z-index: 9999999; background-color: #000000; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; opacity: 0.5;}
+#loader img {position:relative;}
+.sortingHeader span {position:relative; top: -3px; margin-right:3px;}
+.close {display:block; width:28px; height:28px; background: url('Assets/close.png') no-repeat center center;  position:relative; top:-30px; float:right;}
+.close.disabled {display:block; width:28px; height:28px; background: url('Assets/close_disabled.png') no-repeat center center;  position:relative; top:-30px; float:right;}
+.txtplace { width: 249px;background-color:#fff; border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;}
+.grantedAchievements {margin-right:42px;}
+.grantedAchievements li {list-style:none; padding:5px;}
+.Table.rank {font-size:11px;}
+.Table.rank th {padding:3px 3px 3px 8px;}
+.Table.rank tr {height:28px;}
+.Table.rank tr td {padding:3px;}
+.achievementsIcons {padding-bottom:2px}
+.Table.rank th:last-child {width:72px;}
+.Table.rank th, .Table.rank tr {text-align:center;}
+.Table.rank td:nth-child(2)  {text-align:left; padding-left:20px;}
+.Table.rank th:nth-child(2)  {text-align:left; padding-left:40px;}

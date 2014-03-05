@@ -3,10 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControls/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <%@ Register Src="~/UserControls/UserBasicStats.ascx" TagPrefix="uc" TagName="UserBasicStats" %>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -18,34 +15,34 @@
     <form id="form1" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    
-    <asp:HyperLink runat="server" CssClass="forkMe" ImageUrl="~/Assets/forkme.png" NavigateUrl="https://github.com/Cybercom-Poland/Trambambule" Height="100" Target="_blank"></asp:HyperLink>
-
+    <a  target="_blank" href="https://github.com/Cybercom-Poland/Trambambule"
+        class="forkMe">
+        <img alt="Fork me on GitHub" src="<%=Page.ResolveUrl("~/Assets/forkme.png")%>" /></a>
     <div class="MainPanel">
         <div class="HeaderPanel">
-            <uc:Header id="ucHeader" runat="server"></uc:Header>
+            <uc:Header ID="ucHeader" runat="server"></uc:Header>
         </div>
-        <asp:UpdatePanel ID="upanMain" runat="server">
+        <asp:UpdatePanel ID="upanMain" runat="server" >        
             <ContentTemplate>
                 <table cellpadding="0" cellspacing="0">
                     <tr>
-                        <td class="LeftPanel">   
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">        
+                        <td class="LeftPanel">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </td>
                         <td class="RightPanel">
-                            <uc:UserBasicStats id="ucUserBasicStats" runat="server"></uc:UserBasicStats>
+                            <uc:UserBasicStats ID="ucUserBasicStats" runat="server"></uc:UserBasicStats>
                         </td>
                     </tr>
-                </table>     
+                </table>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <div style="clear: both;"></div>
+        <div style="clear: both;">
+        </div>
         <div class="Footer">
             by Mariusz Milewski & Maciej Górski 2013
         </div>
     </div>
-    
     </form>
 </body>
 </html>

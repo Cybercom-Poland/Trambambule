@@ -25,7 +25,12 @@ namespace Trambambule
             if (goals1 > goals2) return Common.EResult.Win;
             if (goals1 < goals2) return Common.EResult.Loose;
             return Common.EResult.Draw;
-        } 
+        }
+
+        public static string GetAchievementsLevelName(int level)
+        {
+            return level == 1 ? "początkujący" : level == 2 ? "zaawansowany" : "mistrzowski";
+        }
 
         public static bool CompareNames(Player p, string prefix)
         {

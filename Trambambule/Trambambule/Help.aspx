@@ -27,8 +27,8 @@
         strzałek.</p>
         <p>7. Aby wyczyścić wszystkie pola ewidencji meczu wciśnij przycisk "Wyczyść".</p>
         <h2>KORZYSTANIE Z APLIKACJI</h2>
-        <p>Aplikacja poza zgłaszaniem meczy umożliwia monitorowanie <a href="LastGames.aspx">historii rozegranych gier</a> przez konkretnego gracza oraz podgląd globalnego
-        <a href="Default.aspx">rankingu firmowego</a>.        </p>
+        <p>Aplikacja poza zgłaszaniem meczy umożliwia monitorowanie <a href="/LastGames.aspx">historii rozegranych gier</a> przez konkretnego gracza oraz podgląd globalnego
+        <a href="/Default.aspx">rankingu firmowego</a>.        </p>
         <p>Na pasku bocznym po prawej stronie wyświetlane są szczegółowe statytyki wybranego gracza. Aby wybrać gracza należy wprowadzić jego
         imię i nazwisko (podobnie jak przy wprowadzaniu wyniku) w polu tekstowym u góry prawego paska. Po wybraniu gracza, wszystkie statystyki
         na poszczególnych podstronach również będą spersonalizowane dla wybranego gracza.    </p>
@@ -56,13 +56,13 @@
 
             <p>Więcej szczegółów można znaleźć na <a href="http://www.glicko.net/glicko.html">stronie Marka Glickmana</a>, a w szczególności w jego <a href="http://www.glicko.net/glicko/glicko.pdf">opisie rankingu Glicko</a>.</p>
 
-        <center>
+        <span class="center">
             W razie pytań odnośnie działania aplikacji, sugestii, etc. proszę kontaktować się z Mariuszem Milewskim.
             <br />
             W razie pytań odnośnie wyznaczania punktów rankingowych, proszę kontaktować się z Maćkiem Górskim.   
             <br />
             <br />
-        </center>
+        </span>
     </div>
 
 </asp:Content>

@@ -13,48 +13,66 @@ namespace Trambambule.UserControls {
     public partial class Header {
         
         /// <summary>
-        /// hlSendResult control.
+        /// hplSendResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlSendResult;
+        protected global::System.Web.UI.WebControls.HyperLink hplSendResult;
         
         /// <summary>
-        /// hlResults control.
+        /// hplDefault control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlResults;
+        protected global::System.Web.UI.WebControls.HyperLink hplDefault;
         
         /// <summary>
-        /// HyperLink1 control.
+        /// hplLastGames control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink hplLastGames;
         
         /// <summary>
-        /// HyperLink3 control.
+        /// hplUserStats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.HyperLink hplUserStats;
         
         /// <summary>
-        /// HyperLink2 control.
+        /// hplGrantedAchievements control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.WebControls.HyperLink hplGrantedAchievements;
+        
+        /// <summary>
+        /// hplPlayers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplPlayers;
+        
+        /// <summary>
+        /// hplHelp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplHelp;
     }
 }

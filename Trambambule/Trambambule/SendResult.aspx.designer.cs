@@ -22,6 +22,15 @@ namespace Trambambule {
         protected global::System.Web.UI.WebControls.Panel pnlSendResult;
         
         /// <summary>
+        /// litTbxPlayer1OffStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTbxPlayer1OffStats;
+        
+        /// <summary>
         /// tbxPlayer1Off control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace Trambambule {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
+        /// litTbxPlayer2OffStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTbxPlayer2OffStats;
+        
+        /// <summary>
         /// ibtn1 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace Trambambule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ibtn2;
+        
+        /// <summary>
+        /// litTbxPlayer1DeffStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTbxPlayer1DeffStats;
         
         /// <summary>
         /// tbxPlayer1Deff control.
@@ -182,6 +209,15 @@ namespace Trambambule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender4;
+        
+        /// <summary>
+        /// litTbxPlayer2DeffStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTbxPlayer2DeffStats;
         
         /// <summary>
         /// tbxScoreA control.
@@ -281,5 +317,14 @@ namespace Trambambule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlInfo;
+        
+        /// <summary>
+        /// litAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litAchievements;
     }
 }

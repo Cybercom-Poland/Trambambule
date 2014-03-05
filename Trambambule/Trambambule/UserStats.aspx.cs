@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using Trambambule.Stats;
+using Trambambule.Stats.Helpers;
 
 namespace Trambambule
 {
@@ -12,17 +14,42 @@ namespace Trambambule
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.LoadComplete += new EventHandler(Page_LoadComplete);
+            //Page.LoadComplete += new EventHandler(Page_LoadComplete);
         }
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            BindGoalsStats();
-            BindPartnersStats();
-            BindRivalsStats();
-            BindPlayerRatingStats();
-            BindPlayerRatingChart();
-            BindPlayerRankChart();
+            if (Session["UserBasicStatsPlayer"] != null)
+            {
+                BindGoalsStats();
+                BindPartnersStats();
+                BindRivalsStats();
+                BindPlayerRatingStats();
+                BindPlayerRatingChart();
+                BindPlayerRankChart();
+                phAllUsersStats.Visible = false;
+                phUserStats.Visible = true;
+            }
+            else
+            {
+                List<BestStat> stats = new List<BestStat>();
+                if (Cache[DataAccess.OverallStatsCacheName] == null)
+                {
+                    stats = OverallStats.CalculateBestStats();
+
+                    Cache.Insert(DataAccess.OverallStatsCacheName, stats, null, DateTime.Now.AddSeconds(DataAccess.CacheTimeInSeconds), TimeSpan.Zero);
+                }
+                else
+                {
+                    stats = (List<BestStat>)Cache[DataAccess.OverallStatsCacheName];
+                }
+
+                repItems.DataSource = stats;
+                repItems.DataBind();
+
+                phUserStats.Visible = false;
+                phAllUsersStats.Visible = true;
+            }
         }
 
         private void BindPlayerRatingChart()

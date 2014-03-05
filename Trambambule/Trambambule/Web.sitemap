@@ -11,5 +11,9 @@
     </siteMapNode>
     <siteMapNode url="~/UserStats.aspx" title="Statystyki gracza"  description="">
     </siteMapNode>
+    <siteMapNode url="~/GrantedAchievements.aspx" title="Zdobyte osiągnięcia"  description="">
+    </siteMapNode>
+    <siteMapNode url="~/PlayersList.aspx" title="Lista graczy i dodawanie nowego gracza"  description="">
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

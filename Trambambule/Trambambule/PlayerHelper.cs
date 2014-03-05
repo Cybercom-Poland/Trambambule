@@ -8,7 +8,7 @@ namespace Trambambule
     public class PlayerHelper
     {
         private static readonly long SECONDS_IN_YEAR = 31536000;
-        private static readonly double INITIAL_RATING = 1500;
+        public static readonly double INITIAL_RATING = 1500;
         private static readonly double MIN_RATING = 100;
         private static readonly double MIN_RD = 30;
         private static readonly double MAX_RD = 350;
@@ -144,6 +144,18 @@ namespace Trambambule
             TimeSpan timeSpan = currentTimestamp - lastMatchData.Timestamp;
             double timeInSeconds = timeSpan.TotalSeconds;
             return Math.Min(MAX_RD, Math.Sqrt(currentRD * currentRD + MAGIC_C_CONSTANT * MAGIC_C_CONSTANT * timeInSeconds));
+        }
+
+        public class PlayersNameAndLastNameWithLocation
+        {
+            public string NameAndLastName { get; set; }
+            public int LocationId { get; set; }
+
+            public PlayersNameAndLastNameWithLocation(string nameAndLastName, int locationId)
+            {
+                NameAndLastName = nameAndLastName;
+                LocationId = locationId;
+            }
         }
     }
 }

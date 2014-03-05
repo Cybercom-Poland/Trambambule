@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -58,19 +59,43 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Achievements\GoalsScored\lvl1.png" />
+    <Content Include="Assets\Achievements\GoalsScored\lvl2.png" />
+    <Content Include="Assets\Achievements\GoalsScored\lvl3.png" />
+    <Content Include="Assets\Achievements\PlayedMatchesCount\lvl1.png" />
+    <Content Include="Assets\Achievements\PlayedMatchesCount\lvl2.png" />
+    <Content Include="Assets\Achievements\PlayedMatchesCount\lvl3.png" />
+    <Content Include="Assets\Achievements\WinsWithOnePartner\lvl1.png" />
+    <Content Include="Assets\Achievements\WinsWithOnePartner\lvl2.png" />
+    <Content Include="Assets\Achievements\WinsWithOnePartner\lvl3.png" />
+    <Content Include="Assets\Achievements\WinsInRow\lvl1.png" />
+    <Content Include="Assets\Achievements\WinsInRow\lvl3.png" />
+    <Content Include="Assets\Achievements\WinsInRow\lvl2.png" />
+    <Content Include="Assets\ajax-loader.gif" />
+    <Content Include="Assets\arrow_asc.png" />
+    <Content Include="Assets\arrow_desc.png" />
+    <Content Include="Assets\arrow_sorting.png" />
+    <Content Include="Assets\close.png" />
+    <Content Include="Assets\close_disabled.png" />
+    <Content Include="Assets\jquery-1.10.2.min.js" />
+    <Content Include="Assets\jquery.cookie.js" />
     <Content Include="Assets\cybercom_logo.png" />
     <Content Include="Assets\exchange.png" />
     <Content Include="Assets\forkme.png" />
+    <Content Include="AutoGrant.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="GrantedAchievements.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="LastGames.aspx" />
+    <Content Include="PlayersList.aspx" />
     <Content Include="SendResult.aspx" />
     <Content Include="Styles.css" />
     <Content Include="UserControls\Header.ascx" />
-    <Content Include="UserControls\Menu.ascx" />
     <Content Include="UserControls\UserBasicStats.ascx" />
     <Content Include="UserStats.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -79,9 +104,42 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Achievements\AchievementService.cs" />
-    <Compile Include="Achievements\BestWeekWin.cs" />
-    <Compile Include="Achievements\IAchievement.cs" />
+    <Compile Include="Achievements\GoalsScored.cs" />
+    <Compile Include="Achievements\PlayedMatchesCount.cs" />
+    <Compile Include="Achievements\WinsWithOnePartner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Achievements\Helpers\AchievementBase.cs" />
+    <Compile Include="Achievements\AchievementsService.cs" />
+    <Compile Include="Achievements\Helpers\AchievementsWithPlayers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Achievements\Helpers\AchievementTextWithId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Achievements\IAchievement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Achievements\Helpers\PlayerWithLevelOfAchievement.cs" />
+    <Compile Include="Achievements\WinsInRow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutoGrant.aspx.cs">
+      <DependentUpon>AutoGrant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutoGrant.aspx.designer.cs">
+      <DependentUpon>AutoGrant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GrantedAchievements.aspx.cs">
+      <DependentUpon>GrantedAchievements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GrantedAchievements.aspx.designer.cs">
+      <DependentUpon>GrantedAchievements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\Helpers\BestStat.cs" />
+    <Compile Include="Stats\OverallStats.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Default.aspx.cs">
@@ -113,8 +171,14 @@
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\Player.cs" />
     <Compile Include="PlayerHelper.cs" />
+    <Compile Include="PlayersList.aspx.cs">
+      <DependentUpon>PlayersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayersList.aspx.designer.cs">
+      <DependentUpon>PlayersList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendResult.aspx.cs">
       <DependentUpon>SendResult.aspx</DependentUpon>
@@ -122,6 +186,9 @@
     </Compile>
     <Compile Include="SendResult.aspx.designer.cs">
       <DependentUpon>SendResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrambambuleDBContext.cs">
+      <DependentUpon>TrambambuleDBContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="TrambambuleDBContext.designer.cs">
       <AutoGen>True</AutoGen>
@@ -134,13 +201,6 @@
     </Compile>
     <Compile Include="UserControls\Header.ascx.designer.cs">
       <DependentUpon>Header.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Menu.ascx.cs">
-      <DependentUpon>Menu.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\Menu.ascx.designer.cs">
-      <DependentUpon>Menu.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserBasicStats.ascx.cs">
       <DependentUpon>UserBasicStats.ascx</DependentUpon>

@@ -31,6 +31,15 @@ namespace Trambambule.UserControls {
         protected global::System.Web.UI.WebControls.TextBox tbxPlayers;
         
         /// <summary>
+        /// lbtClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtClear;
+        
+        /// <summary>
         /// AutoCompleteExtender1 control.
         /// </summary>
         /// <remarks>

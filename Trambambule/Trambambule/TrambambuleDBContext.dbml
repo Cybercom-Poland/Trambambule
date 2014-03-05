@@ -1,5 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Trambambule" Class="TrambambuleDBContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=10.60.1.32;Initial Catalog=Trambambule;Persist Security Info=True;User ID=Trambambule_User" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TrambambuleConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=Trambambule;Persist Security Info=True;User ID=konrad" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TrambambuleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Achievement" Member="Achievements">
+    <Type Name="Achievement">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level1Label" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level1Icon" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level2Label" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level2Icon" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level3Label" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Level3Icon" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+      <Column Name="Class" Type="System.String" DbType="NvarChar(100)" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AchievementPlayer" Member="AchievementPlayer">
+    <Type Name="AchievementPlayer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AchievementId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LevelOfAchievement" Type="System.Int32" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ToNextLevelLabel" Type="System.String" DbType="NvarChar(500)" CanBeNull="false" />
+      <Association Name="Player_AchievementPlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" />
+      <Association Name="Achievement_AchievementPlayer" Member="Achievement" ThisKey="AchievementId" OtherKey="Id" Type="Achievement" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Match" Member="Matches">
     <Type Name="Match">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

@@ -13,6 +13,15 @@ namespace Trambambule {
     public partial class UserStats {
         
         /// <summary>
+        /// phUserStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phUserStats;
+        
+        /// <summary>
         /// pnlPartnerStats control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,23 @@ namespace Trambambule {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRivals;
+        
+        /// <summary>
+        /// phAllUsersStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phAllUsersStats;
+        
+        /// <summary>
+        /// repItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repItems;
     }
 }
